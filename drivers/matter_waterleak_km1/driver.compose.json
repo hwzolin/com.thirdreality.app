@@ -1,0 +1,24 @@
+{
+  "name": {
+    "en": "Smart WaterLeak KM1"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_water"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "matter"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "matter": {
+    "vendorId": 5127,
+    "productId": 4249
+  }
+}
