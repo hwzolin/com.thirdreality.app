@@ -14,6 +14,11 @@ class WaterLeak extends ZigBeeDevice {
     this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
     this.printNode();
 
+    zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
+      enrollResponseCode: 0, // Success
+      zoneId: 0, // Choose a zone id
+    });
+
     // alarm_motion & alarm_tamper
     zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
       this.onIASZoneStatusChangeNotification(payload);
@@ -25,10 +30,10 @@ class WaterLeak extends ZigBeeDevice {
   }
 
 
-  onIASZoneStatusChangeNotification({zoneStatus, extendedStatus, zoneId, delay,}) {
-		this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-		this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
-	}
+  onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
+    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
+    this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
+  }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
     const batteryThreshold = this.getSetting('batteryThreshold') || 20;

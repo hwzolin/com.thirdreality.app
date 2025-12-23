@@ -3,21 +3,27 @@
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER } = require("zigbee-clusters");
 
-class contactSensor extends ZigBeeDevice {
+class WaterLeak_Gen2 extends ZigBeeDevice {
 
   /**
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('Door Sensor has been initialized');
+    this.log('Water Leak Sensor has been initialized');
     this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
-    this.registerCapability("alarm_contact", CLUSTER.IAS_ZONE);
-    this.printNode();
+    this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
 
     zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
-      enrollResponseCode: 0, // Success
-      zoneId: 0, // Choose a zone id
-    });
+        enrollResponseCode: 0, // Success
+        zoneId: 0, // Choose a zone id
+      });
+
+    // zclNode.endpoints[1].clusters.iasZone.onZoneEnrollRequest = () => {
+    //   zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
+    //     enrollResponseCode: 0, // Success
+    //     zoneId: 0, // Choose a zone id
+    //   });
+    // };
 
     // alarm_motion & alarm_tamper
     zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
@@ -26,15 +32,12 @@ class contactSensor extends ZigBeeDevice {
 
     // measure_battery // alarm_battery
     zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-      // .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
       .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
   }
 
-
   onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
     this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-    this.log('zoneStatus', zoneStatus.alarm1);
-    this.setCapabilityValue('alarm_contact', zoneStatus.alarm1).catch(this.error);
+    this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
@@ -43,12 +46,11 @@ class contactSensor extends ZigBeeDevice {
     this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
   }
 
-
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('Contact Sensor has been added');
+    this.log('MyDevice has been added');
   }
 
   /**
@@ -60,7 +62,7 @@ class contactSensor extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('Contact Sensor settings where changed');
+    this.log('MyDevice settings where changed');
   }
 
   /**
@@ -69,16 +71,16 @@ class contactSensor extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('Contact Sensor was renamed');
+    this.log('MyDevice was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Contact Sensor has been deleted');
+    this.log('MyDevice has been deleted');
   }
 
 }
 
-module.exports = contactSensor;
+module.exports = WaterLeak_Gen2;

@@ -1,7 +1,7 @@
 'use strict';
 
 const { ZigBeeDevice } = require("homey-zigbeedriver");
-const { CLUSTER,Cluster } = require("zigbee-clusters");
+const { CLUSTER, Cluster } = require("zigbee-clusters");
 
 class MotionR1 extends ZigBeeDevice {
 
@@ -35,7 +35,11 @@ class MotionR1 extends ZigBeeDevice {
     //   ]).catch(this.error);
     // }
 
-    
+    zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
+      enrollResponseCode: 0, // Success
+      zoneId: 0, // Choose a zone id
+    });
+
     // alarm_motion
     zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
       this.onIASZoneStatusChangeNotification(payload);
@@ -56,7 +60,7 @@ class MotionR1 extends ZigBeeDevice {
     //     minChange: 10,
     //   },
     // ]).catch(error=>this.log(error));
-      
+
     // this.log(zclNode.endpoints[1].clusters)
     // const readCoolDownTime = zclNode.endpoints[1].clusters["coolDownTime"].configureReporting({
     //   coolDownTime:{}
@@ -73,7 +77,7 @@ class MotionR1 extends ZigBeeDevice {
   //   //     cooldown_time: setting_value
   //   //   })
   //   // }
-    
+
   // }
 
 
@@ -84,7 +88,7 @@ class MotionR1 extends ZigBeeDevice {
     this.log('Motion Sensor R1 has been added');
   }
 
- 
+
   /**
    * onSettings is called when the user updates the device's settings.
    * @param {object} event the onSettings event data
@@ -107,10 +111,10 @@ class MotionR1 extends ZigBeeDevice {
   }
 
 
-  onIASZoneStatusChangeNotification({zoneStatus, extendedStatus, zoneId, delay,}) {
-		this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-		this.setCapabilityValue('alarm_motion', zoneStatus.alarm1).catch(this.error);
-	}
+  onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
+    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
+    this.setCapabilityValue('alarm_motion', zoneStatus.alarm1).catch(this.error);
+  }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
     const batteryThreshold = this.getSetting('batteryThreshold') || 20;

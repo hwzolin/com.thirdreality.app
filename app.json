@@ -695,6 +695,31 @@
     },
     {
       "name": {
+        "en": "Smart Garage Door Opener"
+      },
+      "class": "other",
+      "capabilities": [
+        "onoff"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "matter"
+      ],
+      "images": {
+        "small": "/drivers/matter_garage_door_opener/assets/images/small.png",
+        "large": "/drivers/matter_garage_door_opener/assets/images/large.png",
+        "xlarge": "/drivers/matter_garage_door_opener/assets/images/xlarge.png"
+      },
+      "matter": {
+        "vendorId": 5127,
+        "productId": 4248
+      },
+      "id": "matter_garage_door_opener"
+    },
+    {
+      "name": {
         "en": "Smart Color Night Light"
       },
       "class": "light",
@@ -756,6 +781,31 @@
         }
       },
       "id": "matter_plug"
+    },
+    {
+      "name": {
+        "en": "Smart WaterLeak KM1"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_water"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "matter"
+      ],
+      "images": {
+        "small": "/drivers/matter_waterleak_km1/assets/images/small.png",
+        "large": "/drivers/matter_waterleak_km1/assets/images/large.png",
+        "xlarge": "/drivers/matter_waterleak_km1/assets/images/xlarge.png"
+      },
+      "matter": {
+        "vendorId": 5127,
+        "productId": 4249
+      },
+      "id": "matter_waterleak_km1"
     },
     {
       "name": {
@@ -882,6 +932,10 @@
               1,
               1280,
               65281
+            ],
+            "bindings": [
+              1,
+              1280
             ]
           }
         },
@@ -1914,7 +1968,7 @@
     },
     {
       "name": {
-        "en": "Water Leak Sensor"
+        "en": "WaterLeak Sensor"
       },
       "class": "sensor",
       "capabilities": [
@@ -1966,6 +2020,57 @@
         }
       },
       "id": "water_leak"
+    },
+    {
+      "name": {
+        "en": "WaterLeak Sensor Gen2"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_water"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/water_leak_gen2/assets/images/small.png",
+        "large": "/drivers/water_leak_gen2/assets/images/large.png"
+      },
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RWS0218Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "water_leak_gen2"
     },
     {
       "name": {

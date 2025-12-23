@@ -1,11 +1,11 @@
 {
   "name": {
-    "en": "Smart Motion Sensor R1"
+    "en": "WaterLeak Sensor Gen2"
   },
   "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "alarm_motion"
+    "alarm_water"
   ],
   "platforms": [
     "local",
@@ -14,16 +14,15 @@
   "connectivity": [
     "zigbee"
   ],
-  "energy": {
-    "batteries": [
-      "AA",
-      "AA",
-      "AA"
-    ]
-  },
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
   },
   "zigbee": {
     "manufacturerName": [
@@ -31,17 +30,12 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RSMR01067Z"
+      "3RWS0218Z"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
-          1,
-          1280,
-          65281
-        ],
-        "bindings": [
           1,
           1280
         ]
@@ -49,7 +43,7 @@
     },
     "learnmode": {
       "instruction": {
-        "en": "Press and hold the + button for 10 seconds to factory reset the sensor.\nConfirm the sensitivity indicator is flashing rapidly."
+        "en": "Press and hold the reset button until the red light is blinking."
       }
     }
   }
