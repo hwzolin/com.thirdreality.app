@@ -18,22 +18,24 @@ class soilMoistureSensor extends ZigBeeDevice {
   zclNode = null
 
   async onNodeInit({ zclNode }) {
+    try {
+      this.log('Soil Moisture Sensor has been initialized');
+      this.zclNode = zclNode
+      this.device_version = await zclNode.endpoints[1].clusters.basic.readAttributes(['appVersion']).catch(error => { this.error(error) })
+      await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
 
+      this.zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
+        .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
 
-    this.log('Soil Moisture Sensor has been initialized');
-    this.zclNode = zclNode
-    this.device_version = await zclNode.endpoints[1].clusters.basic.readAttributes(['appVersion']).catch(error => { this.error(error) })
-    await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+      // measure_battery // alarm_battery
+      this.zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
 
-    this.zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
-      .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
+      this.zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME].on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
 
-    // measure_battery // alarm_battery
-    this.zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-      .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-
-    this.zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME].on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
-
+    } catch (err) {
+      this.log(err)
+    }
 
   }
 

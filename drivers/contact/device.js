@@ -9,25 +9,31 @@ class contactSensor extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('Door Sensor has been initialized');
-    this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
-    this.registerCapability("alarm_contact", CLUSTER.IAS_ZONE);
-    this.printNode();
+    try {
+      this.log('Door Sensor has been initialized');
+      this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+      this.registerCapability("alarm_contact", CLUSTER.IAS_ZONE);
+      this.printNode();
 
-    zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
-      enrollResponseCode: 0, // Success
-      zoneId: 0, // Choose a zone id
-    });
+      zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
+        enrollResponseCode: 0, // Success
+        zoneId: 0, // Choose a zone id
+      }).catch(err => {this.log(err)});
 
-    // alarm_motion & alarm_tamper
-    zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-      this.onIASZoneStatusChangeNotification(payload);
+      // alarm_motion & alarm_tamper
+      zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
+        this.onIASZoneStatusChangeNotification(payload);
+      }
+
+      // measure_battery // alarm_battery
+      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+        // .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
     }
-
-    // measure_battery // alarm_battery
-    zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-      // .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-      .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+    catch(error){
+      this.log(error)
+    }
+    
   }
 
 

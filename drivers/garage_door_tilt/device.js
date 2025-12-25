@@ -9,21 +9,24 @@ class GarageDoorSensor extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.setCapabilityOptions("garagedoor_closed",{setable: false})
-    this.setCapabilityValue("garagedoor_closed",false)
-    
-    if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
-      zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-    }
-    
+    try {
+      this.setCapabilityOptions("garagedoor_closed", { setable: false })
+      this.setCapabilityValue("garagedoor_closed", false)
 
-    if (this.getClusterEndpoint(CLUSTER.IAS_ZONE)) {
-      zclNode.endpoints[this.getClusterEndpoint(CLUSTER.IAS_ZONE)].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-        this.onIASZoneStatusChangeNotification(payload)
-      };
-    }
+      if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+          .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+      }
 
+
+      if (this.getClusterEndpoint(CLUSTER.IAS_ZONE)) {
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.IAS_ZONE)].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
+          this.onIASZoneStatusChangeNotification(payload)
+        };
+      }
+    } catch (err) {
+      this.log(err)
+    }
 
   }
 
@@ -43,13 +46,13 @@ class GarageDoorSensor extends ZigBeeDevice {
 
   onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
     // this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-    
-    this.log('alarm1: '+ zoneStatus.alarm1)
-    if(zoneStatus.alarm1==true){
-      this.setCapabilityValue("garagedoor_closed",false).catch(this.error)
+
+    this.log('alarm1: ' + zoneStatus.alarm1)
+    if (zoneStatus.alarm1 == true) {
+      this.setCapabilityValue("garagedoor_closed", false).catch(this.error)
     }
-    else if(zoneStatus.alarm1==false){
-    
+    else if (zoneStatus.alarm1 == false) {
+
       this.setCapabilityValue('garagedoor_closed', true).catch(this.error)
     }
   }

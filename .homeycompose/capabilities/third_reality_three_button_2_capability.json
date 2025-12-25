@@ -1,0 +1,43 @@
+{
+    "type": "enum",
+    "title": {
+        "en": "Button 2 capability"
+    },
+    "values": [
+        {
+            "id": "Long Press",
+            "title": {
+                "en": "Long Press"
+            }
+        },
+        {
+            "id": "Press",
+            "title": {
+                "en": "Press"
+            }
+        },
+        {
+            "id": "Double Press",
+            "title": {
+                "en": "Double press"
+            }
+        },
+        {
+            "id": "Release",
+            "title": {
+                "en": "Release"
+            }
+        },
+        {
+            "id":"",
+            "title":{
+                "en":"Clear"
+            }
+        }
+    ],
+    "getable": true,
+    "setable": false,
+    "uiComponent": "button",
+    "uiQuickAction": true,
+    "insights": true
+}

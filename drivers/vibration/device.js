@@ -9,18 +9,19 @@ class VibrationSensor extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('Vibration Sensor has been initialized');
-
-
-    if (this.getClusterEndpoint(CLUSTER.IAS_ZONE)) {
-      zclNode.endpoints[this.getClusterEndpoint(CLUSTER.IAS_ZONE)].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-        this.onIASZoneStatusChangeNotification(payload)
-      };
-    }
-
-    if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
-      zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+    try {
+      this.log('Vibration Sensor has been initialized');
+      if (this.getClusterEndpoint(CLUSTER.IAS_ZONE)) {
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.IAS_ZONE)].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
+          this.onIASZoneStatusChangeNotification(payload)
+        };
+      }
+      if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+          .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+      }
+    } catch (err) {
+      this.log(err)
     }
   }
 

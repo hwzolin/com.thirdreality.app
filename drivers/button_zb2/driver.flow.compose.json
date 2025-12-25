@@ -1,0 +1,76 @@
+{
+  "triggers": [
+    {
+      "id": "three_button_1_press_single",
+      "title": {
+        "en": "Button 1 Press"
+      }
+    },
+    {
+      "id": "three_button_1_press_double",
+      "title": {
+        "en": "Button 1 Double Press"
+      }
+    },
+    {
+      "id": "three_button_1_press_Long",
+      "title": {
+        "en": "Button 1 Long Press"
+      }
+    },
+    {
+      "id": "three_button_1_release",
+      "title": {
+        "en": "Button 1 Release"
+      }
+    },
+    {
+      "id": "three_button_2_press_single",
+      "title": {
+        "en": "Button 2 Press"
+      }
+    },
+    {
+      "id": "three_button_2_press_double",
+      "title": {
+        "en": "Button 2 Double Press"
+      }
+    },
+    {
+      "id": "three_button_2_press_Long",
+      "title": {
+        "en": "Button 2 Long Press"
+      }
+    },
+    {
+      "id": "three_button_2_release",
+      "title": {
+        "en": "Button 2 Release"
+      }
+    },
+    {
+      "id": "three_button_3_press_single",
+      "title": {
+        "en": "Button 3 Press"
+      }
+    },
+    {
+      "id": "three_button_3_press_double",
+      "title": {
+        "en": "Button 3 Double Press"
+      }
+    },
+    {
+      "id": "three_button_3_press_Long",
+      "title": {
+        "en": "Button 3 Long Press"
+      }
+    },
+    {
+      "id": "three_button_3_release",
+      "title": {
+        "en": "Button 3 Release"
+      }
+    }
+  ]
+}

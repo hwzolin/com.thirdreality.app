@@ -9,48 +9,61 @@ class WaterLeak_Gen2 extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('Water Leak Sensor has been initialized');
-    this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
-    this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
+    try {
+      this.log('Water Leak Sensor has been initialized');
+      this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+      this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
 
-    zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
+      await this.configAttributeReport()
+
+      zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
         enrollResponseCode: 0, // Success
         zoneId: 0, // Choose a zone id
-      });
+      }).catch(err => { this.error(err) });
 
-    // zclNode.endpoints[1].clusters.iasZone.onZoneEnrollRequest = () => {
-    //   zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
-    //     enrollResponseCode: 0, // Success
-    //     zoneId: 0, // Choose a zone id
-    //   });
-    // };
+      
 
-    // alarm_motion & alarm_tamper
-    zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-      this.onIASZoneStatusChangeNotification(payload);
+      // alarm_motion & alarm_tamper
+      zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
+        this.onIASZoneStatusChangeNotification(payload);
+      }
+
+      // measure_battery // alarm_battery
+      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+    } catch (err) {
+      this.log(err)
     }
 
-    // measure_battery // alarm_battery
-    zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-      .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+  }
+
+  async configAttributeReport() {
+    
+    await this.zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME].configureReporting({
+      batteryPercentageRemaining: {
+        minInterval: 900,
+        maxInterval: 3600,
+        minChange: 2
+      }
+    })
   }
 
   onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
-    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-    this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
+    this.log('IASZoneStatusChangeNotification received:', zoneStatus.alarm1, extendedStatus, zoneId, delay);
+    this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(err => { this.error(err) });
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
     const batteryThreshold = this.getSetting('batteryThreshold') || 20;
     this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2);
-    this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
+    this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(err => { this.error(err) })
   }
 
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('MyDevice has been added');
+    this.log('WaterLeak Sensor Gen2 has been added');
   }
 
   /**
@@ -62,7 +75,7 @@ class WaterLeak_Gen2 extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('MyDevice settings where changed');
+    this.log('WaterLeak Sensor Gen2 settings where changed');
   }
 
   /**
@@ -71,14 +84,14 @@ class WaterLeak_Gen2 extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('MyDevice was renamed');
+    this.log('WaterLeak Sensor Gen2 was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('MyDevice has been deleted');
+    this.log('WaterLeak Sensor Gen2 has been deleted');
   }
 
 }

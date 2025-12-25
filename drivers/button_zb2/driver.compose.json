@@ -1,0 +1,67 @@
+{
+  "name": {
+    "en": "Smart Button ZB2"
+  },
+  "class": "button",
+  "capabilities": [
+    "measure_battery",
+    "third_reality_three_button_1_capability",
+    "third_reality_three_button_2_capability",
+    "third_reality_three_button_3_capability"
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Thirdreality",
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RSB01085Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          6,
+          8,
+          18
+        ]
+      },
+      "2": {
+        "clusters": [
+          0,
+          1,
+          6,
+          8,
+          18
+        ]
+      },
+      "3": {
+        "clusters": [
+          0,
+          1,
+          6,
+          8,
+          18
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "At the same time, hold down both the '1' and '2' buttons until you hear the 'beep' sound, and then release them."
+      }
+    }
+  }
+}

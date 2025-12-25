@@ -37,40 +37,45 @@ class colorBulbZL1 extends ZigBeeDevice {
   /**
    * onInit is called when the device is initialized.
    */
-  async onNodeInit({ zclNode }) {   
+  async onNodeInit({ zclNode }) {
 
-    this.registerCapability("onoff", CLUSTER.ON_OFF);
-    await this.zclNode.endpoints[1].clusters.levelControl.on("attr.currentLevel",currentLevel=>{
-      this.log("currentLevel: ",currentLevel)
-      this.setCapabilityValue("dim",currentLevel/MAX_DIM).catch(this.error)
-    })
+    try {
+      this.registerCapability("onoff", CLUSTER.ON_OFF);
+      await this.zclNode.endpoints[1].clusters.levelControl.on("attr.currentLevel", currentLevel => {
+        this.log("currentLevel: ", currentLevel)
+        this.setCapabilityValue("dim", currentLevel / MAX_DIM).catch(this.error)
+      })
 
-    // await wrapAsyncWithRetry(this.readLevelContorlAttributes.bind(this));
-    if (!this.getStoreValue('colorClusterConfigured')
-      && (this.hasCapability('light_hue')
-      || this.hasCapability('light_saturation')
-      || this.hasCapability('light_mode')
-      || this.hasCapability('light_temperature'))
-    ) {
-      await wrapAsyncWithRetry(this.readColorControlAttributes.bind(this));
+      // await wrapAsyncWithRetry(this.readLevelContorlAttributes.bind(this));
+      if (!this.getStoreValue('colorClusterConfigured')
+        && (this.hasCapability('light_hue')
+          || this.hasCapability('light_saturation')
+          || this.hasCapability('light_mode')
+          || this.hasCapability('light_temperature'))
+      ) {
+        await wrapAsyncWithRetry(this.readColorControlAttributes.bind(this));
+      }
+
+
+      if (this.hasCapability('light_hue')
+        || this.hasCapability('light_saturation')
+        || this.hasCapability('light_mode')
+        || this.hasCapability('light_temperature')
+      ) {
+        await this.registerColorCapabilities({ zclNode });
+      }
+
+      if (this.hasCapability('dim')) {
+        // this.setCapabilityValue('dim',this.zclNode.endpoints[1].clusters[CLUSTER.LEVEL_CONTROL.NAME].readAttributes['currentLevel'])
+        this.registerCapabilityListener('dim', (value, opts) => {
+          return this.changeDimLevel(value, opts);
+        });
+      }
+    }
+    catch (error) {
+      this.log(error)
     }
 
-
-    if (this.hasCapability('light_hue')
-      || this.hasCapability('light_saturation')
-      || this.hasCapability('light_mode')
-      || this.hasCapability('light_temperature')
-    ) {
-      await this.registerColorCapabilities({ zclNode });
-    }
-
-    if (this.hasCapability('dim')) {
-      // this.setCapabilityValue('dim',this.zclNode.endpoints[1].clusters[CLUSTER.LEVEL_CONTROL.NAME].readAttributes['currentLevel'])
-      this.registerCapabilityListener('dim', (value, opts) => {
-        return this.changeDimLevel(value, opts);
-      });
-    }
-    
   }
 
 
@@ -85,7 +90,7 @@ class colorBulbZL1 extends ZigBeeDevice {
     if (levelControlClusterEndpoint === null) throw new Error('missing_level_control_cluster');
     return this.zclNode.endpoints[levelControlClusterEndpoint].clusters.levelControl;
   }
-  
+
   async changeDimLevel(dim, opts = {}) {
     this.log('changeDimLevel() →', dim);
 
@@ -225,45 +230,45 @@ class colorBulbZL1 extends ZigBeeDevice {
       });
   }
 
-    /**
-   * Read colorControl cluster attributes needed in order to operate the device properly.
-   * @returns {Promise<T>}
-   */
-    async readLevelContorlAttributes() {
-      this.log('readLevelContorlAttributes()');
-      return this.levelControlCluster.readAttributes([
-        'currentLevel', 'remainingTime', 'onOffTransitionTime',
-        'onLevel', 'onTransitionTime', 'offTransitionTime', 'defaultMoveRate'
-      ])
-        .then(async ({
-          currentLevel, remainingTime, onOffTransitionTime,
-          onLevel, onTransitionTime, offTransitionTime, defaultMoveRate
-        }) => {
-            
-          // Store all properties
-          
-          await this.setStoreValue('currentLevel', currentLevel);
-          await this.setStoreValue('remainingTime', remainingTime);
-          await this.setStoreValue('onOffTransitionTime', onOffTransitionTime);
-          await this.setStoreValue('onLevel', onLevel);
-          await this.setStoreValue('onTransitionTime', onTransitionTime);
-          await this.setStoreValue('offTransitionTime', offTransitionTime);
-          await this.setStoreValue('defaultMoveRate', defaultMoveRate);
-  
-          this.log('read configuration attributes', {
-            currentLevel,
-            remainingTime,
-            onOffTransitionTime,
-            onLevel,
-            onTransitionTime,
-            offTransitionTime,
-            defaultMoveRate
-          });
-        })
-        .catch(err => {
-          this.error('Error: could not read level control attributes', err);
+  /**
+ * Read colorControl cluster attributes needed in order to operate the device properly.
+ * @returns {Promise<T>}
+ */
+  async readLevelContorlAttributes() {
+    this.log('readLevelContorlAttributes()');
+    return this.levelControlCluster.readAttributes([
+      'currentLevel', 'remainingTime', 'onOffTransitionTime',
+      'onLevel', 'onTransitionTime', 'offTransitionTime', 'defaultMoveRate'
+    ])
+      .then(async ({
+        currentLevel, remainingTime, onOffTransitionTime,
+        onLevel, onTransitionTime, offTransitionTime, defaultMoveRate
+      }) => {
+
+        // Store all properties
+
+        await this.setStoreValue('currentLevel', currentLevel);
+        await this.setStoreValue('remainingTime', remainingTime);
+        await this.setStoreValue('onOffTransitionTime', onOffTransitionTime);
+        await this.setStoreValue('onLevel', onLevel);
+        await this.setStoreValue('onTransitionTime', onTransitionTime);
+        await this.setStoreValue('offTransitionTime', offTransitionTime);
+        await this.setStoreValue('defaultMoveRate', defaultMoveRate);
+
+        this.log('read configuration attributes', {
+          currentLevel,
+          remainingTime,
+          onOffTransitionTime,
+          onLevel,
+          onTransitionTime,
+          offTransitionTime,
+          defaultMoveRate
         });
-    }
+      })
+      .catch(err => {
+        this.error('Error: could not read level control attributes', err);
+      });
+  }
 
 
 
@@ -335,10 +340,10 @@ class colorBulbZL1 extends ZigBeeDevice {
 
       // Move to the specified hue and saturation
       await this.colorControlCluster.moveToHueAndSaturation(moveToHueAndSaturationCommand);
-      const current_level_attr = await this.zclNode.endpoints[1].clusters.levelControl.readAttributes(["currentLevel"]).catch(err =>{this.error(err)})
+      const current_level_attr = await this.zclNode.endpoints[1].clusters.levelControl.readAttributes(["currentLevel"]).catch(err => { this.error(err) })
       const current_level = current_level_attr["currentLevel"]
-      this.log("current_level: ",current_level)
-      this.setCapabilityValue("dim",current_level/MAX_DIM).catch(err=>this.error(err))
+      this.log("current_level: ", current_level)
+      this.setCapabilityValue("dim", current_level / MAX_DIM).catch(err => this.error(err))
 
       return true;
     } catch (error) {

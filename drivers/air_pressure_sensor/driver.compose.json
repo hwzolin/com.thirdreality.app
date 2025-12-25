@@ -1,11 +1,11 @@
 {
   "name": {
-    "en": "WaterLeak Sensor Gen2"
+    "en": "Smart Air Pressure Sensor"
   },
   "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "alarm_water"
+    "measure_pressure"
   ],
   "platforms": [
     "local",
@@ -16,39 +16,32 @@
   ],
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
-    "large": "{{driverAssetsPath}}/images/large.png"
-  },
-  "energy": {
-    "batteries": [
-      "AAA",
-      "AAA"
-    ]
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
   },
   "zigbee": {
     "manufacturerName": [
-      "Thirdreality",
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RWS0218Z"
+      "3RAP0149BZ"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
           1,
-          1280
+          1027
         ],
-        "bindings":[
-          0,
+        "bindings": [
           1,
-          1280
+          1027
         ]
       }
     },
     "learnmode": {
       "instruction": {
-        "en": "Press and hold the reset button until the red light is blinking."
+        "en": "Press and hold the reset button until the red light is on, and then release button."
       }
     }
   }

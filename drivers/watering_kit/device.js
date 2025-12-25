@@ -5,19 +5,24 @@ const { CLUSTER } = require("zigbee-clusters");
 
 class waterKit extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
-    await this.registerCapability("onoff", CLUSTER.ON_OFF);
+    try {
+      await this.registerCapability("onoff", CLUSTER.ON_OFF);
 
-    const device_ieee = this.getSettings()["zb_ieee_address"]
-    const modeNum = this.getSettings()["zb_product_id"]
+      const device_ieee = this.getSettings()["zb_ieee_address"]
+      const modeNum = this.getSettings()["zb_product_id"]
 
-    this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
+      this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
 
-    zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-      this.onIASZoneStatusChangeNotification(payload);
+      zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
+        this.onIASZoneStatusChangeNotification(payload);
+      }
+
+      zclNode.endpoints[1].clusters["powerConfiguration"]
+        .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) => { this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) });
+    } catch (err) {
+      this.log(err)
     }
 
-    zclNode.endpoints[1].clusters["powerConfiguration"]
-      .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) => { this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) });
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
@@ -33,10 +38,10 @@ class waterKit extends ZigBeeDevice {
     this.log('Watering Kit has been added');
   }
 
-  onIASZoneStatusChangeNotification({zoneStatus, extendedStatus, zoneId, delay,}) {
-		this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-		this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
-	}
+  onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
+    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
+    this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
+  }
 
   /**
    * onSettings is called when the user updates the device's settings.

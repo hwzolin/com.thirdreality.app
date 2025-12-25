@@ -26,23 +26,28 @@ class multiFunNightLight extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
+    try {
+      this.registerCapability("onoff", CLUSTER.ON_OFF);
+      this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
+      this.registerCapability("measure_luminance", CLUSTER.ILLUMINANCE_MEASUREMENT)
 
-    this.registerCapability("onoff", CLUSTER.ON_OFF);
-    this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
-    this.registerCapability("measure_luminance", CLUSTER.ILLUMINANCE_MEASUREMENT)
+      if (this.hasCapability('light_hue')
+        || this.hasCapability('light_saturation')
+        || this.hasCapability('light_mode')
+      ) {
+        await this.registerColorCapabilities({ zclNode });
+      }
 
-    if (this.hasCapability('light_hue')
-      || this.hasCapability('light_saturation')
-      || this.hasCapability('light_mode')
-    ) {
-      await this.registerColorCapabilities({ zclNode });
+      await zclNode.endpoints[1].clusters["mFunNightLightMotion"].on("attr.zoneStatus", (zoneStatus) => this.onPrivateMotionValue(zoneStatus))
+
+
+      await zclNode.endpoints[1].clusters["illuminanceMeasurement"]
+        .on("attr.measuredValue", (measuredValue) => this.onIlluminanceMeasurementGet(measuredValue))
+    } catch (err) {
+      this.log(err)
     }
 
-    await zclNode.endpoints[1].clusters["mFunNightLightMotion"].on("attr.zoneStatus", (zoneStatus) => this.onPrivateMotionValue(zoneStatus))
 
-
-    await zclNode.endpoints[1].clusters["illuminanceMeasurement"]
-      .on("attr.measuredValue", (measuredValue) => this.onIlluminanceMeasurementGet(measuredValue))
   }
   get colorControlCluster() {
     const colorControlEndpoint = this.getClusterEndpoint(CLUSTER.COLOR_CONTROL);

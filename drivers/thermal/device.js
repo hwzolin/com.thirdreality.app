@@ -9,22 +9,23 @@ class thermalSensor extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('Thermal Sensor has been initialized');
-    await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+    try {
+      this.log('Thermal Sensor has been initialized');
+      await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+      zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
+        .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
 
+      // measure_humidity
+      zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME]
+        .on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
 
-    zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
-      .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
+      // measure_battery // alarm_battery
+      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
 
-    // measure_humidity
-    zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME]
-      .on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
-
-    // measure_battery // alarm_battery
-    zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-      .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-
-
+    } catch (err) {
+      this.log(err)
+    } 
   }
 
   onTemperatureMeasuredAttributeReport(measuredValue) {

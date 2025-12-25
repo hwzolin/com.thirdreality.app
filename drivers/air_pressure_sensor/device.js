@@ -3,41 +3,37 @@
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER } = require("zigbee-clusters");
 
-class WaterLeak extends ZigBeeDevice {
+module.exports = class airPressureSensor extends ZigBeeDevice {
 
   /**
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    try {
-      this.log('Water Leak Sensor has been initialized');
-      this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
-      this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
-      this.printNode();
+    this.log('Air Pressure Sensor has been initialized');
+    this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+    this.registerCapability("measure_pressure", CLUSTER.PRESSURE_MEASUREMENT)
 
-      zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
-        enrollResponseCode: 0, // Success
-        zoneId: 0, // Choose a zone id
-      });
+    await this.configAttributeReport()
 
-      // alarm_motion & alarm_tamper
-      zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-        this.onIASZoneStatusChangeNotification(payload);
-      }
 
-      // measure_battery // alarm_battery
-      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-    } catch (err) {
-      this.log(err)
-    }
+    // measure_battery // alarm_battery
+    zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+      .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
 
+    //measure_pressure
+    zclNode.endpoints[1].clusters[CLUSTER.PRESSURE_MEASUREMENT.NAME]
+      .on('attr.measuredValue', this.onMeasuredValueAttributeReport.bind(this));
   }
 
-
-  onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
-    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-    this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
+  async configAttributeReport() {
+    
+    await this.zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME].configureReporting({
+      batteryPercentageRemaining: {
+        minInterval: 900,
+        maxInterval: 3600,
+        minChange: 2
+      }
+    })
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
@@ -46,11 +42,16 @@ class WaterLeak extends ZigBeeDevice {
     this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
   }
 
+  onMeasuredValueAttributeReport(measurePressureValue) {
+    this.log("measurePressureValue: ", measurePressureValue)
+    this.setCapabilityValue("measure_pressure", measurePressureValue).catch(error => { this.log(error) })
+  }
+
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('MyDevice has been added');
+    this.log('Air Pressure Sensor has been added');
   }
 
   /**
@@ -62,7 +63,7 @@ class WaterLeak extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('MyDevice settings where changed');
+    this.log('Air Pressure Sensor settings where changed');
   }
 
   /**
@@ -71,16 +72,14 @@ class WaterLeak extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('MyDevice was renamed');
+    this.log('Air Pressure Sensor was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('MyDevice has been deleted');
+    this.log('Air Pressure Sensor has been deleted');
   }
 
-}
-
-module.exports = WaterLeak;
+};

@@ -9,18 +9,22 @@ class Curtain extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('MyDevice has been initialized');
+    try {
+      this.log('MyDevice has been initialized');
 
-    await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
+      await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
 
-    // await this.registerCapability("windowcoverings_set", CLUSTER.WINDOW_COVERING);
-    await this.registerCapability("windowcoverings_state", CLUSTER.WINDOW_COVERING);
-    // console.log(await zclNode.endpoints[1].clusters)
-    zclNode.endpoints[1].clusters[CLUSTER.WINDOW_COVERING.NAME].on("attr.currentPositionLiftPercentage", this.updatePostion.bind(this))
-    this.registerCapabilityListener('windowcoverings_set', value => this.setPosition(zclNode, value));
+      // await this.registerCapability("windowcoverings_set", CLUSTER.WINDOW_COVERING);
+      await this.registerCapability("windowcoverings_state", CLUSTER.WINDOW_COVERING);
+      // console.log(await zclNode.endpoints[1].clusters)
+      zclNode.endpoints[1].clusters[CLUSTER.WINDOW_COVERING.NAME].on("attr.currentPositionLiftPercentage", this.updatePostion.bind(this))
+      this.registerCapabilityListener('windowcoverings_set', value => this.setPosition(zclNode, value));
 
-    zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-      .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+    } catch (err) {
+      this.log(err)
+    }
 
   }
 
@@ -31,8 +35,8 @@ class Curtain extends ZigBeeDevice {
   }
 
   async updatePostion(position) {
-    console.log("current curtain lift percentage is: ",(100-position))
-    this.setCapabilityValue('windowcoverings_set', (100-position)/100).catch(this.error);
+    console.log("current curtain lift percentage is: ", (100 - position))
+    this.setCapabilityValue('windowcoverings_set', (100 - position) / 100).catch(this.error);
   }
 
   async setPosition(zclNode, pos) {

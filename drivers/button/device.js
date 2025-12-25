@@ -26,19 +26,23 @@ class Button extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.log('Button has been initialized');
-
-   
-    if (this.getClusterEndpoint(CLUSTER.MULTI_STATE_INPUT)) {
-      zclNode.endpoints[this.getClusterEndpoint(CLUSTER.MULTI_STATE_INPUT)].clusters[CLUSTER.MULTI_STATE_INPUT.NAME]
-        .on('attr.presentValue', this.onGetMultiStateInputPresentValueAttributeReport.bind(this));
-    }
+    try {
+      this.log('Button has been initialized');
 
 
+      if (this.getClusterEndpoint(CLUSTER.MULTI_STATE_INPUT)) {
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.MULTI_STATE_INPUT)].clusters[CLUSTER.MULTI_STATE_INPUT.NAME]
+          .on('attr.presentValue', this.onGetMultiStateInputPresentValueAttributeReport.bind(this));
+      }
 
-    if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
-      zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+
+
+      if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
+          .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+      }
+    } catch (error) {
+      this.log(error)
     }
   }
 

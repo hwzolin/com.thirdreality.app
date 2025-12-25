@@ -5,22 +5,26 @@ const { CLUSTER } = require("zigbee-clusters");
 
 class Switch extends ZigBeeDevice {
     async onNodeInit({ zclNode }) {
-        await this.registerCapability("onoff", CLUSTER.ON_OFF);
+        try {
+            await this.registerCapability("onoff", CLUSTER.ON_OFF);
 
-        const device_ieee = this.getSettings()["zb_ieee_address"]
-        const modeNum = this.getSettings()["zb_product_id"]
-        // if the switch modeNum is 3RSS007Z or 3RSS008Z, the switch is v1 or v2, it is report batteryVoltage
-        if (modeNum == "3RSS007Z" || modeNum == "3RSS008Z") {
-            try {
-                const currentBatteryVoltageValue = await zclNode.endpoints[1].clusters.powerConfiguration.readAttributes(["batteryVoltage"])
-                this.onBatteryVoltageAttributeReport(currentBatteryVoltageValue["batteryVoltage"])
-            } catch (err) {
-                this.log("Switch ", device_ieee, " can not get BatteryVoltage, ", err)
+            const device_ieee = this.getSettings()["zb_ieee_address"]
+            const modeNum = this.getSettings()["zb_product_id"]
+            // if the switch modeNum is 3RSS007Z or 3RSS008Z, the switch is v1 or v2, it is report batteryVoltage
+            if (modeNum == "3RSS007Z" || modeNum == "3RSS008Z") {
+                try {
+                    const currentBatteryVoltageValue = await zclNode.endpoints[1].clusters.powerConfiguration.readAttributes(["batteryVoltage"])
+                    this.onBatteryVoltageAttributeReport(currentBatteryVoltageValue["batteryVoltage"])
+                } catch (err) {
+                    this.log("Switch ", device_ieee, " can not get BatteryVoltage, ", err)
+                }
+                // if the switch modeNum is 3RSS009Z, the switch is v3, it is report batteryPercentageRemaining
+            } else {
+                zclNode.endpoints[1].clusters["powerConfiguration"]
+                    .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) => { this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) });
             }
-            // if the switch modeNum is 3RSS009Z, the switch is v3, it is report batteryPercentageRemaining
-        } else {
-            zclNode.endpoints[1].clusters["powerConfiguration"]
-                .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) => { this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) });
+        } catch (err) {
+            this.log(err)
         }
     }
 
