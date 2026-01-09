@@ -1,0 +1,59 @@
+{
+  "name": {
+    "en": "Smart Soil Moisture Sensor Gen2"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_battery",
+    "measure_temperature",
+    "measure_moisture"
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "energy": {
+    "batteries": [
+      "AA"
+    ]
+  },
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Thirdreality",
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RSM0347Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          1026,
+          1029,
+          1032
+        ],
+        "bindings":[
+          0,
+          1,
+          1026,
+          1029,
+          1032
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "Long press the reset button until the red light comes on, and the blue light flashes when you release the button."
+      }
+    }
+  }
+}

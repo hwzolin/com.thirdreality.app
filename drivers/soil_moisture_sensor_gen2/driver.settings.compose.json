@@ -1,0 +1,76 @@
+[
+    {
+        "type": "group",
+        "label": {
+            "en": "Config Report"
+        },
+        "children": [
+            {
+                "id": "temperature_report_min_interval",
+                "type": "number",
+                "label": {
+                    "en": "Temperature report(minium interval)"
+                },
+                "value": 5,
+                "min": 0,
+                "max": 65535,
+                "units": { "en": "seconds" }
+            },
+            {
+                "id": "temperature_report_max_interval",
+                "type": "number",
+                "label": {
+                    "en": "Temperature report(maximum interval)"
+                },
+                "value": 36000,
+                "min": 0,
+                "max": 65535,
+                "units": { "en": "seconds" }
+            },
+            {
+                "id": "temperature_report_change",
+                "type": "number",
+                "label": {
+                    "en": "Temperature report Change"
+                },
+                "value": 100,
+                "min": 0,
+                "max": 65535,
+                "units": { "en": "0.01(℃)" }
+            },
+            {
+                "id": "humidity_report_min_interval",
+                "type": "number",
+                "label": {
+                    "en": "Humidity report(minium interval)"
+                },
+                "value": 5,
+                "min": 0,
+                "max": 65535,
+                "units": { "en": "seconds" }
+            },
+            {
+                "id": "humidity_report_max_interval",
+                "type": "number",
+                "label": {
+                    "en": "Humidity report(maximum interval)"
+                },
+                "value": 36000,
+                "min": 0,
+                "max": 65535,
+                "units": { "en": "seconds" }
+            },
+            {
+                "id": "humidity_report_change",
+                "type": "number",
+                "label": {
+                    "en": "Humidity report Change"
+                },
+                "value": 200,
+                "min": 0,
+                "max": 32767,
+                "units": { "en": "0.01(%)" }
+            }
+        ]
+    }
+]
