@@ -1392,6 +1392,112 @@
     },
     {
       "name": {
+        "en": "Smart Presence Sensor R3"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_occupancy",
+        "light_saturation",
+        "light_temperature",
+        "dim",
+        "light_hue",
+        "light_mode",
+        "onoff",
+        "measure_luminance",
+        "volatile_organic_compounds_capability"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/radar_60G/assets/images/small.png",
+        "large": "/drivers/radar_60G/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RPL01084Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              6,
+              8,
+              768,
+              1024,
+              1280,
+              1030,
+              1070,
+              65281
+            ],
+            "bindings": [
+              1,
+              6,
+              8,
+              768,
+              1024,
+              1280,
+              1030,
+              1070,
+              65281
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button for 10 seconds to factory reset the sensor.\nConfirm the sensitivity indicator is flashing rapidly."
+          }
+        }
+      },
+      "id": "radar_60G",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "value": "previous",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "off",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "on",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "toggle",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "previous",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "Smart Soil Moisture Sensor"
       },
       "class": "sensor",
@@ -2450,6 +2556,58 @@
             "filter": "driver_id=dual_plug_ZP1"
           }
         ]
+      },
+      {
+        "id": "voc_less_than",
+        "title": {
+          "en": "Voc less than"
+        },
+        "titleFormatted": {
+          "en": "Volatile organic compounds less than [[voc_value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=radar_60G"
+          },
+          {
+            "type": "number",
+            "name": "voc_value",
+            "title": {
+              "en": "Voc value"
+            },
+            "unit": {
+              "en": "ppb"
+            }
+          }
+        ]
+      },
+      {
+        "id": "voc_greater_than",
+        "title": {
+          "en": "Voc greater than"
+        },
+        "titleFormatted": {
+          "en": "Volatile organic compounds greater than [[voc_value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=radar_60G"
+          },
+          {
+            "type": "number",
+            "name": "voc_value",
+            "title": {
+              "en": "Voc value"
+            },
+            "unit": {
+              "en": "ppb"
+            }
+          }
+        ]
       }
     ],
     "conditions": [
@@ -2897,6 +3055,20 @@
       "uiComponent": "button",
       "uiQuickAction": true,
       "insights": true
+    },
+    "volatile_organic_compounds_capability": {
+      "id": "measure_voc",
+      "type": "number",
+      "title": {
+        "en": "Volatile organic compounds"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "ppb"
+      },
+      "icon": "/assets/voc_capability.svg"
     }
   }
 }

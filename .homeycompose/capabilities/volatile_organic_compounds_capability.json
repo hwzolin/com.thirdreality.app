@@ -1,0 +1,12 @@
+{   
+    "id": "measure_voc",
+    "type": "number",
+    "title": {
+        "en": "Volatile organic compounds"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "units": { "en": "ppb" },
+    "icon": "/assets/voc_capability.svg"
+}

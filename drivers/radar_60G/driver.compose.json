@@ -1,0 +1,69 @@
+{
+  "name": {
+    "en": "Smart Presence Sensor R3"
+  },
+  "class": "other" ,
+  "capabilities": [
+    "alarm_occupancy",
+    "light_saturation",
+    "light_temperature",
+    "dim",
+    "light_hue",
+    "light_mode",
+    "onoff",
+    "measure_luminance",
+    "volatile_organic_compounds_capability"
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Thirdreality",
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RPL01084Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          6,
+          8,
+          768,
+          1024,
+          1280,
+          1030,
+          1070,
+          65281
+        ],
+        "bindings": [
+          1,
+          6,
+          8,
+          768,
+          1024,
+          1280,
+          1030,
+          1070,
+          65281
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "Press and hold the reset button for 10 seconds to factory reset the sensor.\nConfirm the sensitivity indicator is flashing rapidly."
+      }
+    }
+  }
+}

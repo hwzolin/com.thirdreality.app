@@ -1,0 +1,26 @@
+[
+    {
+        "id": "start_up_on_off",
+        "type": "dropdown",
+        "value": "previous",
+        "label": { "en": "Start Up ON/OFF" },
+        "values": [
+        {
+            "id": "off",
+            "label": { "en": "OFF" }
+        },
+        {
+            "id": "on",
+            "label": { "en": "ON" }
+        },
+        {
+            "id": "toggle",
+            "label": { "en": "TOGGLE" }
+        },
+        {
+            "id": "previous",
+            "label": { "en": "PREVIOUS" }
+        }
+        ]
+    }
+]

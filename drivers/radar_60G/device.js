@@ -3,6 +3,7 @@
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER, Cluster } = require('zigbee-clusters');
 const startUpOnOffCluster = require("../../lib/startUpOnOffSpecificCluster")
+const vocPrivateCluster = require("../../lib/vocPrivateCluster")
 require('events').EventEmitter.defaultMaxListeners = 0;
 
 
@@ -18,6 +19,7 @@ const {
 } = require('./util');
 
 Cluster.addCluster(startUpOnOffCluster)
+Cluster.addCluster(vocPrivateCluster)
 
 const MAX_HUE = 254;
 const MAX_DIM = 254;
@@ -42,13 +44,38 @@ const lightTemperatureCapabilityDefinition = {
   cluster: CLUSTER.COLOR_CONTROL
 }
 
-class colorBulbZL1 extends ZigBeeDevice {
+class Radar_60G extends ZigBeeDevice {
 
   /**
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
+
+    await this.configAttributeReport()
+    await this.readLevelContorlAttributes()
+    await this.readColorControlAttributes()
+    
+    this.registerCapability('onoff', CLUSTER.ON_OFF)
     this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
+
+    // alarm_motion
+    await zclNode.endpoints[1].clusters.occupancySensing.on('attr.occupancy', this.onOccupancySensingChangeNotification.bind(this));
+    await zclNode.endpoints[1].clusters.illuminanceMeasurement.on('attr.measuredValue', this.setLuminanceValue.bind(this));
+
+
+    
+
+    await zclNode.endpoints[1].clusters.onOff.on("attr.onOff", value => {
+        this.log("onoff: ",value)
+        this.setCapabilityValue('onoff', value).catch(error => this.log(error))
+      })
+
+    await zclNode.endpoints[1].clusters.vocPrivateCluster.on("attr.vocValue", value => {
+        this.log("vocValue: ",value)
+        this.setCapabilityValue('volatile_organic_compounds_capability', value).catch(error => this.log(error))
+        this.driver.triggerVocLessThanTrigger(this,value)
+        this.driver.triggerVocGreaterThanTrigger(this,value)
+      })
 
     if (!this.getStoreValue('colorClusterConfigured')
       && (this.hasCapability('light_hue')
@@ -95,6 +122,98 @@ class colorBulbZL1 extends ZigBeeDevice {
     });
 
 
+
+  }
+  /**
+   * onAdded is called when the user adds the device, called just after pairing.
+   */
+  async onAdded() {
+    this.log('Radar 60G has been added');
+  }
+
+
+  /**
+   * onSettings is called when the user updates the device's settings.
+   * @param {object} event the onSettings event data
+   * @param {object} event.oldSettings The old settings object
+   * @param {object} event.newSettings The new settings object
+   * @param {string[]} event.changedKeys An array of keys changed since the previous version
+   * @returns {Promise<string|void>} return a custom message that will be displayed
+   */
+  async onSettings({ oldSettings, newSettings, changedKeys }) {
+    this.log('Radar 60G settings where changed');
+  }
+
+  /**
+   * onRenamed is called when the user updates the device's name.
+   * This method can be used this to synchronise the name to the device.
+   * @param {string} name The new name
+   */
+  async onRenamed(name) {
+    this.log('Radar 60G was renamed');
+  }
+
+  async configAttributeReport() {
+
+    await this.zclNode.endpoints[1].clusters.occupancySensing.configureReporting({
+      occupancy: {
+        minInterval: 0,
+        maxInterval: 300
+      }
+    })
+
+    await this.zclNode.endpoints[1].clusters.levelControl.configureReporting({
+      currentLevel: {
+        minInterval: 0,
+        maxInterval: 300,
+        minChange: 1
+      }
+    })
+
+    await this.zclNode.endpoints[1].clusters.colorControl.configureReporting({
+      currentHue: {
+        minInterval: 0,
+        maxInterval: 300,
+        minChange: 1
+      },
+      currentSaturation: {
+        minInterval: 0,
+        maxInterval: 300,
+        minChange: 1
+      },
+      colorTemperatureMireds: {
+        minInterval: 0,
+        maxInterval: 300,
+        minChange: 1
+      }
+    })
+
+    await this.zclNode.endpoints[1].clusters.illuminanceMeasurement.configureReporting({
+      measuredValue: {
+        minInterval: 60,
+        maxInterval: 1800,
+        minChange: 2000
+      }
+    })
+  }
+
+  onOccupancySensingChangeNotification({ occupied }) {
+    this.log('occupancySensingChangeNotification received:', occupied)
+    this.setCapabilityValue('alarm_occupancy', occupied).catch(error => this.log(error))
+  }
+
+  setLuminanceValue(value) {
+    this.log("Lux: ", value)
+    const zigbee_illuminance = Math.round(10 ** ((value - 1) / 10000))
+    this.log("Result illumincance for zigbee: ", zigbee_illuminance)
+    this.setCapabilityValue("measure_luminance", zigbee_illuminance).catch(error => this.log(error))
+  }
+
+  /**
+   * onDeleted is called when the user deleted the device.
+   */
+  async onDeleted() {
+    this.log('Radar 60G has been deleted');
   }
 
   get supportsHueAndSaturation() {
@@ -394,66 +513,6 @@ class colorBulbZL1 extends ZigBeeDevice {
       });
   }
 
-  // async changeColor({ hue, saturation, value }, opts = {}) {
-  //   this.log('changeColor() →', { hue, saturation, value });
-
-  //   // Determine value with fallback to current light_saturation capability value or 1
-  //   if (typeof saturation !== 'number') {
-  //     if (typeof this.getCapabilityValue('light_saturation') === 'number') {
-  //       saturation = this.getCapabilityValue('light_saturation');
-  //     } else {
-  //       saturation = 1;
-  //     }
-  //   }
-
-  //   // Determine value with fallback to current light_saturation capability value or 1
-  //   if (typeof hue !== 'number') {
-  //     if (typeof this.getCapabilityValue('light_hue') === 'number') {
-  //       hue = this.getCapabilityValue('light_hue');
-  //     } else {
-  //       hue = 1;
-  //     }
-  //   }
-
-  //   // Update light_mode capability if necessary
-  //   if (this.hasCapability('light_mode'
-  //     && this.getCapabilityValue('light_mode') !== 'color')) {
-  //     await this.setCapabilityValue('light_mode', 'color').catch(this.error);
-  //   }
-
-  //   // If this device supports hue and saturation commands
-  //   if (this.supportsHueAndSaturation) {
-  //     // Execute move to hue and saturation command
-  //     const moveToHueAndSaturationCommand = {
-  //       hue: Math.round(hue * MAX_HUE),
-  //       saturation: Math.round(saturation * MAX_SATURATION),
-  //       transitionTime: calculateColorControlTransitionTime(opts),
-  //     };
-  //     this.debug('changeColor() → hue and saturation', moveToHueAndSaturationCommand);
-  //     return this.colorControlCluster.moveToHueAndSaturation(moveToHueAndSaturationCommand);
-  //   }
-
-  //   // Determine value with fallback to current dim capability value or 1, value should never be
-  //   // zero, this would result in colorX=0 and colorY=0 being sent to the device which makes
-  //   // some bulbs flicker when turned on again.
-  //   if (typeof value !== 'number') {
-  //     value = this.getCapabilityValue('dim') || 1;
-  //   }
-
-  //   // Convert to CIE color space
-  //   const { x, y } = convertHSVToCIE({ hue, saturation, value });
-
-  //   // Execute move to color command
-  //   const moveToColorCommand = {
-  //     colorX: x * CIE_MULTIPLIER,
-  //     colorY: y * CIE_MULTIPLIER,
-  //     transitionTime: calculateColorControlTransitionTime(opts),
-  //   };
-  //   this.debug('changeColor() → hue', moveToColorCommand);
-  //   return this.colorControlCluster.moveToColor(moveToColorCommand);
-
-  // }
-
   async changeColor({ hue, saturation, value }, opts = {}) {
     this.log('changeColor() →', { hue, saturation, value });
 
@@ -475,38 +534,44 @@ class colorBulbZL1 extends ZigBeeDevice {
       }
     }
 
-    // Determine value with fallback to current dim capability value or 1
+    // Update light_mode capability if necessary
+    if (this.hasCapability('light_mode'
+      && this.getCapabilityValue('light_mode') !== 'color')) {
+      this.log('qweqweqeqeqqweqeq')
+      await this.setCapabilityValue('light_mode', 'color').catch(this.error);
+    }
+
+    // If this device supports hue and saturation commands
+    if (this.supportsHueAndSaturation) {
+      // Execute move to hue and saturation command
+      const moveToHueAndSaturationCommand = {
+        hue: Math.round(hue * MAX_HUE),
+        saturation: Math.round(saturation * MAX_SATURATION),
+        transitionTime: calculateColorControlTransitionTime(opts),
+      };
+      this.debug('changeColor() → hue and saturation', moveToHueAndSaturationCommand);
+      return this.colorControlCluster.moveToHueAndSaturation(moveToHueAndSaturationCommand);
+    }
+
+    // Determine value with fallback to current dim capability value or 1, value should never be
+    // zero, this would result in colorX=0 and colorY=0 being sent to the device which makes
+    // some bulbs flicker when turned on again.
     if (typeof value !== 'number') {
       value = this.getCapabilityValue('dim') || 1;
     }
 
-    // Update light_mode capability if necessary
-    if (this.hasCapability('light_mode'
-      && this.getCapabilityValue('light_mode') !== 'color')) {
-      await this.setCapabilityValue('light_mode', 'color').catch(this.error);
-    }
+    // Convert to CIE color space
+    const { x, y } = convertHSVToCIE({ hue, saturation, value });
 
-
-    // Execute move to hue and saturation command
-    const moveToHueAndSaturationCommand = {
-      hue: Math.round(hue * MAX_HUE),
-      saturation: Math.round(saturation * MAX_SATURATION),
-      transitionTime: 0
+    // Execute move to color command
+    const moveToColorCommand = {
+      colorX: x * CIE_MULTIPLIER,
+      colorY: y * CIE_MULTIPLIER,
+      transitionTime: calculateColorControlTransitionTime(opts),
     };
+    this.debug('changeColor() → hue', moveToColorCommand);
+    return this.colorControlCluster.moveToColor(moveToColorCommand);
 
-    this.debug('changeColor() → hue and saturation', moveToHueAndSaturationCommand);
-
-    try {
-
-      // Move to the specified hue and saturation
-      await this.colorControlCluster.moveToHueAndSaturation(moveToHueAndSaturationCommand);
-
-      return true;
-    } catch (error) {
-      // Log the error and return false
-      this.error('changeColor() → failed to change color', error);
-      return false;
-    }
   }
 
   async onEndDeviceAnnounce() {
@@ -587,19 +652,19 @@ class colorBulbZL1 extends ZigBeeDevice {
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('Smart Color Bulb ZL1 has been added');
+    this.log('Smart Presence sensor R3 has been added');
   }
 
 
   async onRenamed(name) {
-    this.log('Smart Color Bulb ZL1 was renamed');
+    this.log('Smart Presence sensor R3 was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Smart Color Bulb ZL1 has been deleted');
+    this.log('Smart Presence sensor R3 has been deleted');
   }
 
   async onSettings({ oldSettings, newSettings, changedKeys }) {
@@ -627,4 +692,8 @@ class colorBulbZL1 extends ZigBeeDevice {
   }
 }
 
-module.exports = colorBulbZL1;
+
+
+
+
+module.exports = Radar_60G;

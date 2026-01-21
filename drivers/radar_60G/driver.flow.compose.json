@@ -1,0 +1,48 @@
+{
+  "triggers": [
+    {
+      "id": "voc_less_than",
+      "title": {
+        "en": "Voc less than"
+      },
+      "titleFormatted": {
+        "en": "Volatile organic compounds less than [[voc_value]]"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "voc_value",
+          "title": {
+            "en": "Voc value"
+          },
+          "unit":{
+            "en": "ppb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "voc_greater_than",
+      "title": {
+        "en": "Voc greater than"
+      },
+      "titleFormatted": {
+        "en": "Volatile organic compounds greater than [[voc_value]]"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "voc_value",
+          "title": {
+            "en": "Voc value"
+          },
+          "unit":{
+            "en": "ppb"
+          }
+        }
+      ]
+    }
+  ],
+  "conditions": [],
+  "actions": []
+}
