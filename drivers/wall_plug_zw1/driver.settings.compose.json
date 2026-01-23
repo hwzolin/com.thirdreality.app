@@ -1,0 +1,49 @@
+[
+    {
+        "id": "start_up_on_off_bottom",
+        "type": "dropdown",
+        "label": { "en": "Startup ON/OFF(Bottom)" },
+        "values": [
+        {
+            "id": "0",
+            "label": { "en": "OFF" }
+        },
+        {
+            "id": "1",
+            "label": { "en": "ON" }
+        },
+        {
+            "id": "2",
+            "label": { "en": "TOGGLE" }
+        },
+        {
+            "id": "255",
+            "label": { "en": "PREVIOUS" }
+        }
+        ]
+    },
+    {
+        "id": "start_up_on_off_top",
+        "type": "dropdown",
+        "label": { "en": "Startup ON/OFF(Top)" },
+        "values": [
+        {
+            "id": "0",
+            "label": { "en": "OFF" }
+        },
+        {
+            "id": "1",
+            "label": { "en": "ON" }
+        },
+        {
+            "id": "2",
+            "label": { "en": "TOGGLE" }
+        },
+        {
+            "id": "255",
+            "label": { "en": "PREVIOUS" }
+        }
+        ]
+    }
+
+]

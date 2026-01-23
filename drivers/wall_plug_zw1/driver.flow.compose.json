@@ -1,0 +1,80 @@
+{
+  "triggers": [
+    {
+      "id": "wall_zw1_turn_on_bottom",
+      "title": {
+        "en": "Turn on(Bottom)"
+      }     
+    },
+    {
+      "id": "wall_zw1_turn_on_top",
+      "title": {
+        "en": "Turn on(Top)"
+      }
+    },
+    {
+      "id": "wall_zw1_turn_off_bottom",
+      "title": {
+        "en": "Turn off(Bottom)"
+      }
+    },
+    {
+      "id": "wall_zw1_turn_off_top",
+      "title": {
+        "en": "Turn off(Top)"
+      }
+    }
+  ],
+  "conditions":[
+    {
+      "id": "wall_zw1_is_turned_on_bottom",
+      "title": {
+        "en": "Is turned on(Bottom)"
+      }
+    },
+    {
+      "id": "wall_zw1_is_turned_off_bottom",
+      "title": {
+        "en": "Is turned off(Bottom)"
+      }
+    },
+    {
+      "id": "wall_zw1_is_turned_on_top",
+      "title": {
+        "en": "Is turned on(Top)"
+      }
+    },
+    {
+      "id": "wall_zw1_is_turned_off_top",
+      "title": {
+        "en": "Is turned off(Top)"
+      }
+    }
+  ],
+  "actions":[
+    {
+      "id": "wall_zw1_turn_on_bottom",
+      "title": {
+        "en": "Turn on(Bottom)"
+      }     
+    },
+    {
+      "id": "wall_zw1_turn_on_top",
+      "title": {
+        "en": "Turn on(Top)"
+      }
+    },
+    {
+      "id": "wall_zw1_turn_off_bottom",
+      "title": {
+        "en": "Turn off(Bottom)"
+      }
+    },
+    {
+      "id": "wall_zw1_turn_off_top",
+      "title": {
+        "en": "Turn off(Top)"
+      }
+    }
+  ]
+}

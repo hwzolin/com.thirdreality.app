@@ -1,0 +1,12 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "Bottom Switch"
+    },
+    "getable": true,
+    "setable": true,
+    "uiComponent": "button",
+    "uiQuickAction": true,
+    "insights": true
+}
+    

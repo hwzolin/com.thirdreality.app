@@ -1,0 +1,9 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "Reset summation delivered(Top)"
+    },
+    "getable": false,
+    "setable": true,
+    "uiComponent": "button"
+}

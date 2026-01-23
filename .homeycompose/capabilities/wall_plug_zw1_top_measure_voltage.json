@@ -1,0 +1,11 @@
+{
+    "type": "number",
+    "title": {
+        "en": "Top Voltage"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "units": { "en": "V" },
+    "icon": "/assets/power_icon/power_electrical.svg"
+}

@@ -1,0 +1,11 @@
+{
+    "type": "number",
+    "title": {
+        "en": "Bottom Current"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "units": { "en": "A" },
+    "icon": "/assets/power_icon/power_electrical.svg"
+}

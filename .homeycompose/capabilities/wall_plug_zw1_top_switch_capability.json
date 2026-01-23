@@ -1,0 +1,12 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "Top Switch"
+    },
+    "getable": true,
+    "setable": true,
+    "uiComponent": "button",
+    "uiQuickAction": true,
+    "insights": true
+}
+    

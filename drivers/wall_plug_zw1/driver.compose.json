@@ -1,23 +1,21 @@
 {
   "name": {
-    "en": "Smart Dual Plug ZP1"
+    "en": "Smart Wall Outlet ZW1"
   },
   "class": "socket",
   "capabilities": [
-    "third_reality_dual_plug_left_switch_capability",
-    "third_reality_dual_plug_right_switch_capability",
-    "reset_left_summation_delivered_capability",
-    "reset_right_summation_delivered_capability",
-    "measure_current_of_left_dual_plug",
-    "measure_current_of_right_dual_plug",
-    "measure_power_of_left_dual_plug",
-    "measure_power_of_right_dual_plug",
-    "measure_voltage_of_left_dual_plug",
-    "measure_voltage_of_right_dual_plug",
-    "meter_power_of_left_dual_plug",
-    "meter_power_of_right_dual_plug"
-
-
+    "wall_plug_zw1_bottom_measure_current",
+    "wall_plug_zw1_bottom_measure_power",
+    "wall_plug_zw1_bottom_measure_voltage",
+    "wall_plug_zw1_bottom_meter_power",
+    "wall_plug_zw1_bottom_switch_capability",
+    "wall_plug_zw1_reset_bottom_summation_delivered_capability",
+    "wall_plug_zw1_reset_top_summation_delivered_capability",
+    "wall_plug_zw1_top_measure_current",
+    "wall_plug_zw1_top_measure_power",
+    "wall_plug_zw1_top_measure_voltage",
+    "wall_plug_zw1_top_meter_power",
+    "wall_plug_zw1_top_switch_capability"
   ],
   "platforms": [
     "local",
@@ -36,7 +34,7 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RDP01072Z"
+      "3RWP01073Z"
     ],
     "endpoints": {
       "1": {
@@ -81,8 +79,8 @@
       }
     },
     "learnmode": {
-      "instruction":{
-        "en":"Press and hold the reset button until the red light is solid, then release."
+      "instruction": {
+        "en": "Press and hold the reset button until the red light is solid, then release."
       }
     }
   }

@@ -1,0 +1,11 @@
+{
+    "type": "number",
+    "title": {
+        "en": "Top Energy"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "units": { "en": "kWh" },
+    "icon": "/assets/power_icon/power_meter.svg"
+}

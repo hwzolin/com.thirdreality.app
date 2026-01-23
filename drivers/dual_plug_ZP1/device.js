@@ -9,7 +9,7 @@ Cluster.addCluster(PlugOnOffCluster)
 Cluster.addCluster(PlugPrivateCluster)
 
 
-class Plug_V2 extends ZigBeeDevice {
+class Dual_Plug extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
     try {
       const _turned_on_left_condition = this.homey.flow.getConditionCard("is_turned_on_left");
@@ -26,8 +26,8 @@ class Plug_V2 extends ZigBeeDevice {
       this.registerCapability("meter_power_of_left_dual_plug", CLUSTER.METERING)
       this.registerCapability("meter_power_of_right_dual_plug", CLUSTER.METERING)
 
-      // await this.configAttributeReport(1)
-      // await this.configAttributeReport(2)
+      await this.configAttributeReport(1)
+      await this.configAttributeReport(2)
       
       await this.readEndpointOnOffState(1)
       await this.readEndpointOnOffState(2)
@@ -321,4 +321,4 @@ class Plug_V2 extends ZigBeeDevice {
 
 
 
-module.exports = Plug_V2;
+module.exports = Dual_Plug;

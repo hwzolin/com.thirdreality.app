@@ -2128,6 +2128,162 @@
     },
     {
       "name": {
+        "en": "Smart Wall Outlet ZW1"
+      },
+      "class": "socket",
+      "capabilities": [
+        "wall_plug_zw1_bottom_measure_current",
+        "wall_plug_zw1_bottom_measure_power",
+        "wall_plug_zw1_bottom_measure_voltage",
+        "wall_plug_zw1_bottom_meter_power",
+        "wall_plug_zw1_bottom_switch_capability",
+        "wall_plug_zw1_reset_bottom_summation_delivered_capability",
+        "wall_plug_zw1_reset_top_summation_delivered_capability",
+        "wall_plug_zw1_top_measure_current",
+        "wall_plug_zw1_top_measure_power",
+        "wall_plug_zw1_top_measure_voltage",
+        "wall_plug_zw1_top_meter_power",
+        "wall_plug_zw1_top_switch_capability"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/wall_plug_zw1/assets/images/small.png",
+        "large": "/drivers/wall_plug_zw1/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RWP01073Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              65283
+            ],
+            "bindings": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              65283
+            ]
+          },
+          "2": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              65283
+            ],
+            "bindings": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              65283
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is solid, then release."
+          }
+        }
+      },
+      "id": "wall_plug_zw1",
+      "settings": [
+        {
+          "id": "start_up_on_off_bottom",
+          "type": "dropdown",
+          "label": {
+            "en": "Startup ON/OFF(Bottom)"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        },
+        {
+          "id": "start_up_on_off_top",
+          "type": "dropdown",
+          "label": {
+            "en": "Startup ON/OFF(Top)"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "WaterLeak Sensor"
       },
       "class": "sensor",
@@ -2608,6 +2764,58 @@
             }
           }
         ]
+      },
+      {
+        "id": "wall_zw1_turn_on_bottom",
+        "title": {
+          "en": "Turn on(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_top",
+        "title": {
+          "en": "Turn on(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_bottom",
+        "title": {
+          "en": "Turn off(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_top",
+        "title": {
+          "en": "Turn off(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
       }
     ],
     "conditions": [
@@ -2662,6 +2870,58 @@
             "filter": "driver_id=dual_plug_ZP1"
           }
         ]
+      },
+      {
+        "id": "wall_zw1_is_turned_on_bottom",
+        "title": {
+          "en": "Is turned on(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_off_bottom",
+        "title": {
+          "en": "Is turned off(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_on_top",
+        "title": {
+          "en": "Is turned on(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_off_top",
+        "title": {
+          "en": "Is turned off(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
       }
     ],
     "actions": [
@@ -2714,6 +2974,58 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_bottom",
+        "title": {
+          "en": "Turn on(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_top",
+        "title": {
+          "en": "Turn on(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_bottom",
+        "title": {
+          "en": "Turn off(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_top",
+        "title": {
+          "en": "Turn off(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
           }
         ]
       }
@@ -3069,6 +3381,150 @@
         "en": "ppb"
       },
       "icon": "/assets/voc_capability.svg"
+    },
+    "wall_plug_zw1_bottom_measure_current": {
+      "type": "number",
+      "title": {
+        "en": "Bottom Current"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "A"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "wall_plug_zw1_bottom_measure_power": {
+      "type": "number",
+      "title": {
+        "en": "Bottom Power"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "W"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "wall_plug_zw1_bottom_measure_voltage": {
+      "type": "number",
+      "title": {
+        "en": "Bottom Voltage"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "V"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "wall_plug_zw1_bottom_meter_power": {
+      "type": "number",
+      "title": {
+        "en": "Bottom Energy"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "kWh"
+      },
+      "icon": "/assets/power_icon/power_meter.svg"
+    },
+    "wall_plug_zw1_bottom_switch_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Bottom Switch"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button",
+      "uiQuickAction": true,
+      "insights": true
+    },
+    "wall_plug_zw1_reset_bottom_summation_delivered_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Reset summation delivered(Bottom)"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "wall_plug_zw1_reset_top_summation_delivered_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Reset summation delivered(Top)"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "wall_plug_zw1_top_measure_current": {
+      "type": "number",
+      "title": {
+        "en": "Top Current"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "A"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "wall_plug_zw1_top_measure_power": {
+      "type": "number",
+      "title": {
+        "en": "Top Power"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "W"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "wall_plug_zw1_top_measure_voltage": {
+      "type": "number",
+      "title": {
+        "en": "Top Voltage"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "V"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "wall_plug_zw1_top_meter_power": {
+      "type": "number",
+      "title": {
+        "en": "Top Energy"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "kWh"
+      },
+      "icon": "/assets/power_icon/power_meter.svg"
+    },
+    "wall_plug_zw1_top_switch_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Top Switch"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button",
+      "uiQuickAction": true,
+      "insights": true
     }
   }
 }
