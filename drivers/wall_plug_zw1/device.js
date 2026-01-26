@@ -11,10 +11,10 @@ Cluster.addCluster(PlugPrivateCluster)
 
 class Wall_Plug_ZW1 extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
-    const _turned_on_left_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_on_bottom");
-    const _turned_off_left_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_off_bottom");
-    const _turned_on_right_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_on_top");
-    const _turned_off_right_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_off_top");
+    const _turned_on_bottom_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_on_bottom");
+    const _turned_off_bottom_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_off_bottom");
+    const _turned_on_top_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_on_top");
+    const _turned_off_top_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_off_top");
 
     this.registerCapability("wall_plug_zw1_bottom_measure_current", CLUSTER.ELECTRICAL_MEASUREMENT)
     this.registerCapability("wall_plug_zw1_top_measure_current", CLUSTER.ELECTRICAL_MEASUREMENT)
@@ -89,28 +89,28 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
 
     })
 
-    _turned_on_left_condition.registerRunListener(async (args, state) => {
+    _turned_on_bottom_condition.registerRunListener(async (args, state) => {
       const currentValue = await this.getCapabilityValue("wall_plug_zw1_bottom_switch_capability")
       if (currentValue === true) {
         return true
       }
     })
 
-    _turned_off_left_condition.registerRunListener(async (args, state) => {
+    _turned_off_bottom_condition.registerRunListener(async (args, state) => {
       const currentValue = await this.getCapabilityValue("wall_plug_zw1_bottom_switch_capability")
       if (currentValue === false) {
         return true
       }
     })
 
-    _turned_on_right_condition.registerRunListener(async (args, state) => {
+    _turned_on_top_condition.registerRunListener(async (args, state) => {
       const currentValue = await this.getCapabilityValue("wall_plug_zw1_top_switch_capability")
       if (currentValue === true) {
         return true
       }
     })
 
-    _turned_off_right_condition.registerRunListener(async (args, state) => {
+    _turned_off_top_condition.registerRunListener(async (args, state) => {
       const currentValue = await this.getCapabilityValue("wall_plug_zw1_top_switch_capability")
       if (currentValue === false) {
         return true
