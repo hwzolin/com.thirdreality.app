@@ -3446,6 +3446,7 @@
       "units": {
         "en": "kWh"
       },
+      "decimals": 2,
       "icon": "/assets/power_icon/power_meter.svg"
     },
     "wall_plug_zw1_bottom_switch_capability": {
@@ -3527,6 +3528,7 @@
       "units": {
         "en": "kWh"
       },
+      "decimals": 2,
       "icon": "/assets/power_icon/power_meter.svg"
     },
     "wall_plug_zw1_top_switch_capability": {
