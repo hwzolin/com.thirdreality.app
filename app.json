@@ -3146,6 +3146,7 @@
       "units": {
         "en": "kWh"
       },
+      "decimals": 2,
       "icon": "/assets/power_icon/power_meter.svg"
     },
     "meter_power_of_right_dual_plug": {
@@ -3159,6 +3160,7 @@
       "units": {
         "en": "kWh"
       },
+      "decimals": 2,
       "icon": "/assets/power_icon/power_meter.svg"
     },
     "reset_left_summation_delivered_capability": {

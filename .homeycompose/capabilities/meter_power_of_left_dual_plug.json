@@ -7,5 +7,6 @@
     "setable": false,
     "uiComponent": "sensor",
     "units": { "en": "kWh" },
+    "decimals": 2,
     "icon": "/assets/power_icon/power_meter.svg"
 }
