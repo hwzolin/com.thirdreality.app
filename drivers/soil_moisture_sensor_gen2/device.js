@@ -153,6 +153,14 @@ class soilMoistureSensorGen2 extends ZigBeeDevice {
         }
       }).catch(error => { this.log(error) })
 
+      await this.zclNode.endpoints[1].clusters['privateMoistureHumidity'].configureReporting({
+        measuredValue: {
+          minInterval: humidity_report_min_interval_value,
+          maxInterval: humidity_report_max_interval_value,
+          minChange: humidity_report_change_value
+        }
+      }).catch(error => { this.log(error) })
+
     }
   }
 
