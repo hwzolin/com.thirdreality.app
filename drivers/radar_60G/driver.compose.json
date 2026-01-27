@@ -62,7 +62,7 @@
     },
     "learnmode": {
       "instruction": {
-        "en": "Press and hold the reset button for 10 seconds to factory reset the sensor.\nConfirm the sensitivity indicator is flashing rapidly."
+        "en": "Press and hold the reset button until the red light appears."
       }
     }
   }
