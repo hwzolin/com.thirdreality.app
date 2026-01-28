@@ -21,6 +21,11 @@
     "large": "{{driverAssetsPath}}/images/large.png",
     "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
   },
+  "energy": {
+    "batteries": [
+      "INTERNAL"
+    ]
+  },
   "zigbee": {
     "manufacturerName": [
       "Thirdreality",
