@@ -29,56 +29,587 @@
     "email": "zhangyi@3reality.com"
   },
   "support": "https://github.com/hwzolin/com.thirdreality.app/issues",
-  "drivers": [
-    {
-      "name": {
-        "en": "Smart Air Pressure Sensor"
-      },
-      "class": "sensor",
-      "capabilities": [
-        "measure_battery",
-        "measure_pressure"
-      ],
-      "platforms": [
-        "local",
-        "cloud"
-      ],
-      "connectivity": [
-        "zigbee"
-      ],
-      "images": {
-        "small": "/drivers/air_pressure_sensor/assets/images/small.png",
-        "large": "/drivers/air_pressure_sensor/assets/images/large.png",
-        "xlarge": "/drivers/air_pressure_sensor/assets/images/xlarge.png"
-      },
-      "zigbee": {
-        "manufacturerName": [
-          "Third Reality, Inc"
-        ],
-        "productId": [
-          "3RAP0149BZ"
-        ],
-        "endpoints": {
-          "1": {
-            "clusters": [
-              0,
-              1,
-              1027
-            ],
-            "bindings": [
-              1,
-              1027
-            ]
-          }
+  "flow": {
+    "triggers": [
+      {
+        "id": "button_press_single",
+        "title": {
+          "en": "Press"
         },
-        "learnmode": {
-          "instruction": {
-            "en": "Press and hold the reset button until the red light is on, and then release button."
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
           }
-        }
+        ]
       },
-      "id": "air_pressure_sensor"
-    },
+      {
+        "id": "button_press_double",
+        "title": {
+          "en": "Double Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "button_press_Long",
+        "title": {
+          "en": "Long Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "button_release",
+        "title": {
+          "en": "Release Button"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "three_button_1_press_single",
+        "title": {
+          "en": "Button 1 Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_1_press_double",
+        "title": {
+          "en": "Button 1 Double Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_1_press_Long",
+        "title": {
+          "en": "Button 1 Long Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_1_release",
+        "title": {
+          "en": "Button 1 Release"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_2_press_single",
+        "title": {
+          "en": "Button 2 Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_2_press_double",
+        "title": {
+          "en": "Button 2 Double Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_2_press_Long",
+        "title": {
+          "en": "Button 2 Long Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_2_release",
+        "title": {
+          "en": "Button 2 Release"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_3_press_single",
+        "title": {
+          "en": "Button 3 Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_3_press_double",
+        "title": {
+          "en": "Button 3 Double Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_3_press_Long",
+        "title": {
+          "en": "Button 3 Long Press"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "three_button_3_release",
+        "title": {
+          "en": "Button 3 Release"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button_zb2"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_left",
+        "title": {
+          "en": "Turn on(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_right",
+        "title": {
+          "en": "Turn on(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_left",
+        "title": {
+          "en": "Turn off(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_right",
+        "title": {
+          "en": "Turn off(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "voc_less_than",
+        "title": {
+          "en": "Voc less than"
+        },
+        "titleFormatted": {
+          "en": "Volatile organic compounds less than [[voc_value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=radar_60G"
+          },
+          {
+            "type": "number",
+            "name": "voc_value",
+            "title": {
+              "en": "Voc value"
+            },
+            "unit": {
+              "en": "ppb"
+            }
+          }
+        ]
+      },
+      {
+        "id": "voc_greater_than",
+        "title": {
+          "en": "Voc greater than"
+        },
+        "titleFormatted": {
+          "en": "Volatile organic compounds greater than [[voc_value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=radar_60G"
+          },
+          {
+            "type": "number",
+            "name": "voc_value",
+            "title": {
+              "en": "Voc value"
+            },
+            "unit": {
+              "en": "ppb"
+            }
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_bottom",
+        "title": {
+          "en": "Turn on(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_top",
+        "title": {
+          "en": "Turn on(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_bottom",
+        "title": {
+          "en": "Turn off(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_top",
+        "title": {
+          "en": "Turn off(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "is_turned_on_left",
+        "title": {
+          "en": "Is turned on(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "is_turned_off_left",
+        "title": {
+          "en": "Is turned off(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "is_turned_on_right",
+        "title": {
+          "en": "Is turned on(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "is_turned_off_right",
+        "title": {
+          "en": "Is turned off(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_on_bottom",
+        "title": {
+          "en": "Is turned on(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_off_bottom",
+        "title": {
+          "en": "Is turned off(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_on_top",
+        "title": {
+          "en": "Is turned on(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_is_turned_off_top",
+        "title": {
+          "en": "Is turned off(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "turn_on_left",
+        "title": {
+          "en": "Turn on(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_right",
+        "title": {
+          "en": "Turn on(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_left",
+        "title": {
+          "en": "Turn off(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_right",
+        "title": {
+          "en": "Turn off(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_bottom",
+        "title": {
+          "en": "Turn on(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_top",
+        "title": {
+          "en": "Turn on(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_bottom",
+        "title": {
+          "en": "Turn off(Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_off_top",
+        "title": {
+          "en": "Turn off(Top)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
     {
       "name": {
         "en": "Smart Button"
@@ -999,7 +1530,7 @@
     },
     {
       "name": {
-        "en": "Smart Plug UZ1"
+        "en": "Smart Plug E2"
       },
       "class": "socket",
       "capabilities": [
@@ -1018,8 +1549,8 @@
         "zigbee"
       ],
       "images": {
-        "small": "/drivers/plug_702_uk/assets/images/small.png",
-        "large": "/drivers/plug_702_uk/assets/images/large.png"
+        "small": "/drivers/plug_e2/assets/images/small.png",
+        "large": "/drivers/plug_e2/assets/images/large.png"
       },
       "zigbee": {
         "manufacturerName": [
@@ -1027,41 +1558,28 @@
           "Third Reality, Inc"
         ],
         "productId": [
-          "3RSPU01080Z"
+          "3RSPE01044BZ"
         ],
         "endpoints": {
           "1": {
             "clusters": [
               0,
-              3,
               4,
               5,
               6,
               1794,
               2820,
-              4096,
-              65283
-            ],
-            "bindings": [
-              0,
-              3,
-              4,
-              5,
-              6,
-              1794,
-              2820,
-              4096,
               65283
             ]
           }
         },
         "learnmode": {
           "instruction": {
-            "en": "Press and hold the reset button until the red light is solid, then release."
+            "en": "Press and hold the reset button until the red light is blinking."
           }
         }
       },
-      "id": "plug_702_uk",
+      "id": "plug_e2",
       "settings": [
         {
           "id": "start_up_on_off",
@@ -1113,7 +1631,7 @@
     },
     {
       "name": {
-        "en": "Smart Plug E2"
+        "en": "Smart Plug Gen3"
       },
       "class": "socket",
       "capabilities": [
@@ -1132,8 +1650,8 @@
         "zigbee"
       ],
       "images": {
-        "small": "/drivers/plug_e2/assets/images/small.png",
-        "large": "/drivers/plug_e2/assets/images/large.png"
+        "small": "/drivers/plug_gen3/assets/images/small.png",
+        "large": "/drivers/plug_gen3/assets/images/large.png"
       },
       "zigbee": {
         "manufacturerName": [
@@ -1141,28 +1659,45 @@
           "Third Reality, Inc"
         ],
         "productId": [
-          "3RSPE01044BZ"
+          "3RSPU01080Z",
+          "3RSP02064Z",
+          "3RSP0186Z",
+          "3RSPE02065Z",
+          "3RSPJ0187Z"
         ],
         "endpoints": {
           "1": {
             "clusters": [
               0,
+              3,
               4,
               5,
               6,
               1794,
               2820,
+              4096,
+              65283
+            ],
+            "bindings": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              4096,
               65283
             ]
           }
         },
         "learnmode": {
           "instruction": {
-            "en": "Press and hold the reset button until the red light is blinking."
+            "en": "Press and hold the reset button until the red light is solid, then release."
           }
         }
       },
-      "id": "plug_e2",
+      "id": "plug_gen3",
       "settings": [
         {
           "id": "start_up_on_off",
@@ -2465,586 +3000,6 @@
       "id": "watering_kit"
     }
   ],
-  "flow": {
-    "triggers": [
-      {
-        "id": "button_press_single",
-        "title": {
-          "en": "Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button"
-          }
-        ]
-      },
-      {
-        "id": "button_press_double",
-        "title": {
-          "en": "Double Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button"
-          }
-        ]
-      },
-      {
-        "id": "button_press_Long",
-        "title": {
-          "en": "Long Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button"
-          }
-        ]
-      },
-      {
-        "id": "button_release",
-        "title": {
-          "en": "Release Button"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button"
-          }
-        ]
-      },
-      {
-        "id": "three_button_1_press_single",
-        "title": {
-          "en": "Button 1 Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_1_press_double",
-        "title": {
-          "en": "Button 1 Double Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_1_press_Long",
-        "title": {
-          "en": "Button 1 Long Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_1_release",
-        "title": {
-          "en": "Button 1 Release"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_2_press_single",
-        "title": {
-          "en": "Button 2 Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_2_press_double",
-        "title": {
-          "en": "Button 2 Double Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_2_press_Long",
-        "title": {
-          "en": "Button 2 Long Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_2_release",
-        "title": {
-          "en": "Button 2 Release"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_3_press_single",
-        "title": {
-          "en": "Button 3 Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_3_press_double",
-        "title": {
-          "en": "Button 3 Double Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_3_press_Long",
-        "title": {
-          "en": "Button 3 Long Press"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "three_button_3_release",
-        "title": {
-          "en": "Button 3 Release"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=button_zb2"
-          }
-        ]
-      },
-      {
-        "id": "turn_on_left",
-        "title": {
-          "en": "Turn on(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_on_right",
-        "title": {
-          "en": "Turn on(Right)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_off_left",
-        "title": {
-          "en": "Turn off(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_off_right",
-        "title": {
-          "en": "Turn off(Right)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "voc_less_than",
-        "title": {
-          "en": "Voc less than"
-        },
-        "titleFormatted": {
-          "en": "Volatile organic compounds less than [[voc_value]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=radar_60G"
-          },
-          {
-            "type": "number",
-            "name": "voc_value",
-            "title": {
-              "en": "Voc value"
-            },
-            "unit": {
-              "en": "ppb"
-            }
-          }
-        ]
-      },
-      {
-        "id": "voc_greater_than",
-        "title": {
-          "en": "Voc greater than"
-        },
-        "titleFormatted": {
-          "en": "Volatile organic compounds greater than [[voc_value]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=radar_60G"
-          },
-          {
-            "type": "number",
-            "name": "voc_value",
-            "title": {
-              "en": "Voc value"
-            },
-            "unit": {
-              "en": "ppb"
-            }
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_on_bottom",
-        "title": {
-          "en": "Turn on(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_on_top",
-        "title": {
-          "en": "Turn on(Top)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_off_bottom",
-        "title": {
-          "en": "Turn off(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_off_top",
-        "title": {
-          "en": "Turn off(Top)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      }
-    ],
-    "conditions": [
-      {
-        "id": "is_turned_on_left",
-        "title": {
-          "en": "Is turned on(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "is_turned_off_left",
-        "title": {
-          "en": "Is turned off(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "is_turned_on_right",
-        "title": {
-          "en": "Is turned on(Right)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "is_turned_off_right",
-        "title": {
-          "en": "Is turned off(Right)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_is_turned_on_bottom",
-        "title": {
-          "en": "Is turned on(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_is_turned_off_bottom",
-        "title": {
-          "en": "Is turned off(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_is_turned_on_top",
-        "title": {
-          "en": "Is turned on(Top)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_is_turned_off_top",
-        "title": {
-          "en": "Is turned off(Top)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      }
-    ],
-    "actions": [
-      {
-        "id": "turn_on_left",
-        "title": {
-          "en": "Turn on(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_on_right",
-        "title": {
-          "en": "Turn on(Right)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_off_left",
-        "title": {
-          "en": "Turn off(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_off_right",
-        "title": {
-          "en": "Turn off(Right)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_on_bottom",
-        "title": {
-          "en": "Turn on(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_on_top",
-        "title": {
-          "en": "Turn on(Top)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_off_bottom",
-        "title": {
-          "en": "Turn off(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_off_top",
-        "title": {
-          "en": "Turn off(Top)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      }
-    ]
-  },
   "capabilities": {
     "alarm_third_reality_garage_sensor_capability": {
       "type": "boolean",

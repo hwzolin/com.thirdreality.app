@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Smart Plug UZ1"
+    "en": "Smart Plug Gen3"
   },
   "class": "socket",
   "capabilities": [
@@ -28,7 +28,11 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RSPU01080Z"
+      "3RSPU01080Z",
+      "3RSP02064Z",
+      "3RSP0186Z",
+      "3RSPE02065Z",
+      "3RSPJ0187Z"
     ],
     "endpoints": {
       "1": {

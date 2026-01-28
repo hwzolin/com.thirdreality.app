@@ -87,31 +87,31 @@ class Plug_702_UK extends ZigBeeDevice {
   setOnOffState(value){
     const onoff_state = value
     this.log(`this onoff state: ${onoff_state}`)
-    this.setCapabilityValue('onoff', onoff_state)
+    this.setCapabilityValue('onoff', onoff_state).catch(err => { this.error(err) })
   }
 
   setPowerValue(value) {
     const current_value = value / 10
     this.log(`this current value: ${current_value}`)
-    this.setCapabilityValue('measure_power', current_value)
+    this.setCapabilityValue('measure_power', current_value).catch(err => { this.error(err) })
   }
 
   setVoltageValue(value) {
     const current_value = value / 10
     this.log(`this current value: ${current_value}`)
-    this.setCapabilityValue('measure_voltage', current_value)
+    this.setCapabilityValue('measure_voltage', current_value).catch(err => { this.error(err) })
   }
 
   setCurrentValue(value) {
     const current_value = value / 1000
     this.log(`this current value: ${current_value}`)
-    this.setCapabilityValue('measure_current', current_value)
+    this.setCapabilityValue('measure_current', current_value).catch(err => { this.error(err) })
   }
 
   setMeteringValue(value) {
     const current_value = value / 1000
     this.log(`this metering value: ${current_value}`)
-    this.setCapabilityValue('meter_power', current_value)
+    this.setCapabilityValue('meter_power', current_value).catch(err => { this.error(err) })
   }
 
 
