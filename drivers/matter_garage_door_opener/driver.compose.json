@@ -20,5 +20,10 @@
   "matter": {
     "vendorId": 5127,
     "productId": 4248
+  },
+  "learnmode": {
+    "instruction": {
+      "en": "Press and hold the reset button until the red light is solid, then release."
+    }
   }
 }

@@ -3,6 +3,16 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.18
+- Support for Smart WaterLeak KM1.
+- Support for Smart Garage Door Opener.
+- Support for Smart Button ZB2.
+- Support for Smart Soil Moisture Sensor Gen2.
+- Support for Smart Presence Sensor R3.
+- Support for Smart Wall Outlet ZW1
+- Modify the bindings of the Smart Dual Plug ZP1.
+- Change "plug_702_uk" to "plug_gen3" and also support the model IDs of future series of PLUGs.
+
 ### v1.00.17
 - Provide users with the option to set the config report of the soil sensor and temperature and humidity sensor lite in Advanced Settings.
 - The motion sensor status of the Multi-Function Night Light is displayed in the activity card.
