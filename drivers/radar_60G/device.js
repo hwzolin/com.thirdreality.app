@@ -55,8 +55,12 @@ class Radar_60G extends ZigBeeDevice {
     await this.readLevelContorlAttributes()
     await this.readColorControlAttributes()
     
-    this.registerCapability('onoff', CLUSTER.ON_OFF)
-    this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_saturation", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_temperature", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_hue", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
+    await this.registerCapability("onoff", CLUSTER.ON_OFF)
 
     // alarm_motion
     await zclNode.endpoints[1].clusters.occupancySensing.on('attr.occupancy', this.onOccupancySensingChangeNotification.bind(this));

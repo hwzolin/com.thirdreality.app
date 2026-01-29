@@ -118,13 +118,13 @@ class MotionR1 extends ZigBeeDevice {
 
 
   onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
-    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay).catch(this.error);
+    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay)
     this.setCapabilityValue('alarm_motion', zoneStatus.alarm1).catch(this.error);
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
     const batteryThreshold = this.getSetting('batteryThreshold') || 20;
-    this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2).catch(this.error);
+    this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2)
     this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
   }
 

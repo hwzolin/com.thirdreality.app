@@ -3,6 +3,11 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.19
+- Fix the issue of the Motion Sensor and the Smart Motion Sensor R1 not being synchronized.
+- Change "measure_humidity" in Smart Soil Moisture Sensor to "measure_moisture".
+- By registering the capability during the device initialization process, an attempt is made to fix the issue where the Smart Color Bulb fails to function after an app update.
+
 ### v1.00.18
 - Support for Smart WaterLeak KM1.
 - Support for Smart Garage Door Opener.

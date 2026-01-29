@@ -6,7 +6,7 @@
   "capabilities": [
     "measure_battery",
     "measure_temperature",
-    "measure_humidity"
+    "measure_moisture"
   ],
   "platforms": [
     "local",

@@ -12,7 +12,6 @@ class Motion extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    try {
       this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
       this.registerCapability("alarm_motion", CLUSTER.IAS_ZONE);
 
@@ -38,10 +37,11 @@ class Motion extends ZigBeeDevice {
       //     }
       //   ]).catch(this.error);
       // }
-      zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
-        enrollResponseCode: 0, // Success
-        zoneId: 0, // Choose a zone id
-      });
+
+      // zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
+      //   enrollResponseCode: 0, // Success
+      //   zoneId: 0, // Choose a zone id
+      // });
 
 
       // alarm_motion
@@ -70,15 +70,9 @@ class Motion extends ZigBeeDevice {
       //   coolDownTime:{}
       // }).catch(error=>this.log(error));
       // this.log(readCoolDownTime)
-    } catch (err) {
-      this.log(err)
-    }
-
-
   }
 
   // setSetting(setting_name){
-  //   this.log("aaaaa")
   //   this.log(setting_name)
   //   this.log(setting_value)
   //   // if (setting_name == "cooldown_time"){
@@ -121,13 +115,14 @@ class Motion extends ZigBeeDevice {
 
 
   onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
-    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay).catch(err => { this.error(err) });
+    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay)
+    this.log('zoneStatus.alarm1: ',zoneStatus.alarm1)
     this.setCapabilityValue('alarm_motion', zoneStatus.alarm1).catch(this.error);
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
     const batteryThreshold = (this.getSetting('batteryThreshold') || 20).catch(err => { this.error(err) });
-    this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2).catch(err => { this.error(err) });
+    this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2)
     this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
   }
 

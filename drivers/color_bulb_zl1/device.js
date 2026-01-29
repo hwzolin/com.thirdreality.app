@@ -48,7 +48,12 @@ class colorBulbZL1 extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_saturation", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_temperature", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_hue", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
+    await this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
+    await this.registerCapability("onoff", CLUSTER.ON_OFF)
 
     if (!this.getStoreValue('colorClusterConfigured')
       && (this.hasCapability('light_hue')

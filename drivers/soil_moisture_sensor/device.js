@@ -50,7 +50,7 @@ class soilMoistureSensor extends ZigBeeDevice {
     const humidityOffset = this.getSetting('humidity_offset') || 0;
     const parsedValue = this.getSetting('humidity_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
     this.log('relativeHumidity:', parsedValue, '+ humidity offset', humidityOffset);
-    this.setCapabilityValue('measure_humidity', parsedValue + humidityOffset).catch(this.error);
+    this.setCapabilityValue('measure_moisture', parsedValue + humidityOffset).catch(this.error);
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
