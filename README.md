@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.20
+- Fix the issue that Color Bulb ZL1 doesn't work after the version update.
+
 ### v1.00.19
 - Fix the issue of the Motion Sensor and the Smart Motion Sensor R1 not being synchronized.
 - Change "measure_humidity" in Smart Soil Moisture Sensor to "measure_moisture".
