@@ -10,7 +10,6 @@ const {
   wait,
   limitValue,
   mapValueRange,
-  wrapAsyncWithRetry,
   calculateLevelControlTransitionTime,
   calculateColorControlTransitionTime,
   convertHSVToCIE,
@@ -48,12 +47,7 @@ class colorBulbZL1 extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    await this.registerCapability("light_saturation", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("light_temperature", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("light_hue", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
-    await this.registerCapability("onoff", CLUSTER.ON_OFF)
+    await this.addCapabilities()
 
     if (!this.getStoreValue('colorClusterConfigured')
       && (this.hasCapability('light_hue')
@@ -61,7 +55,9 @@ class colorBulbZL1 extends ZigBeeDevice {
         || this.hasCapability('light_mode')
         || this.hasCapability('light_temperature'))
     ) {
-      await wrapAsyncWithRetry(this.readColorControlAttributes.bind(this));
+      await this.readColorControlAttributes().catch(err => {
+        this.error('Error: could not read color control attributes during onNodeInit', err);
+      });
     }
 
     // Override if needed
@@ -139,6 +135,54 @@ class colorBulbZL1 extends ZigBeeDevice {
     const levelControlClusterEndpoint = this.getClusterEndpoint(CLUSTER.LEVEL_CONTROL);
     if (levelControlClusterEndpoint === null) throw new Error('missing_level_control_cluster');
     return this.zclNode.endpoints[1].clusters.levelControl;
+  }
+
+  async addCapabilities(){
+    this.log("Before capabilities: ",this.getCapabilities())
+
+    if (!this.hasCapability("light_saturation")){
+      this.addCapability("light_saturation")
+      this.registerCapabilityListener("light_saturation",value => {
+        return this.changeColor(value);
+      })
+    }
+
+    if (!this.hasCapability("light_temperature")){
+      this.addCapability("light_temperature")
+      this.registerCapabilityListener("light_temperature",value => {
+        return this.changeColorTemperature(value);
+      })
+    }
+
+    if (!this.hasCapability("light_hue")){
+      this.addCapability("light_hue")
+      this.registerCapabilityListener("light_hue",value => {
+        return this.changeColor(value);
+      })
+    }
+
+    if (!this.hasCapability("light_mode")){
+      this.addCapability("light_mode")
+      this.registerCapabilityListener("light_mode",value => {
+        return this.changeColor(value);
+      })
+    }
+
+    if (!this.hasCapability("dim")){
+      this.addCapability("dim")
+      this.registerCapabilityListener("dim",value => {
+        return this.changeDimLevel(value);
+      })
+    }
+
+    if (!this.hasCapability("onoff")){
+      this.addCapability("onoff")
+      this.registerCapabilityListener("onoff",value => {
+        return this.changeOnOff(value);
+      })
+    }
+
+    this.log("After capabilities: ",this.getCapabilities())
   }
 
   async changeOnOff(onoff) {
@@ -513,7 +557,7 @@ class colorBulbZL1 extends ZigBeeDevice {
       return false;
     }
   }
-
+ 
   async onEndDeviceAnnounce() {
     // Try and get level control cluster
     let levelControlCluster;

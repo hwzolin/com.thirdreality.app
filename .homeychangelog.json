@@ -52,5 +52,8 @@
   },
   "1.0.18": {
     "en": "Added support for devices such as Smart WaterLeak KM1, Smart Garage Door Opener, and others. Also modified some attributes."
+  },
+  "1.0.19": {
+    "en": "The main purpose is to solve the problem where the trigger states of the motion sensor and the intelligent motion sensor R1 cannot be synchronized."
   }
 }
