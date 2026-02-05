@@ -55,5 +55,8 @@
   },
   "1.0.19": {
     "en": "The main purpose is to solve the problem where the trigger states of the motion sensor and the intelligent motion sensor R1 cannot be synchronized."
+  },
+  "1.0.20": {
+    "en": "Fix the issue that Color Bulb ZL1 doesn't work after the version update."
   }
 }

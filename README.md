@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.21
+- Fix the issue where the humidity value of the Smart Soil Moisture Sensor does not change after the APP is updated.
+
 ### v1.00.20
 - Fix the issue that Color Bulb ZL1 doesn't work after the version update.
 

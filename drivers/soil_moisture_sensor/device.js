@@ -21,6 +21,11 @@ class soilMoistureSensor extends ZigBeeDevice {
     try {
       this.log('Soil Moisture Sensor has been initialized');
       this.zclNode = zclNode
+
+      if (this.hasCapability("measure_humidity") || !this.hasCapability("measure_moisture")) {
+        this.removeCapability("measure_humidity")
+        this.addCapability("measure_moisture")
+      }
       this.device_version = await zclNode.endpoints[1].clusters.basic.readAttributes(['appVersion']).catch(error => { this.error(error) })
       await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
 
