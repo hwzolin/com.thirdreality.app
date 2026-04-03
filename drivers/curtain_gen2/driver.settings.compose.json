@@ -1,0 +1,83 @@
+[
+  {
+    "id": "judge_height",
+    "type": "number",
+    "label": { "en": "Judge Height" },
+    "units": { "en": "R" },
+    "step": 1,
+    "min": -100,
+    "max": 100,
+    "hint": {
+      "en": "Value of Judge Height is -100 to 100 R.\n\n**Note: Once this setting is completed, the value reported by the curtains will be synchronized. However, if the setting process times out or fails, it will result in a synchronization failure."
+    }
+  },
+  {
+    "id": "pre_setting_bottom_height",
+    "type": "number",
+    "label": { "en": "Pre-Setting Bottom Height" },
+    "units": { "en": "R" },
+    "step": 1,
+    "min": 50,
+    "max": 4100,
+    "hint": {
+      "en": "Value of Pre-Setting Bottom Height is 50 to 4100 R.\n\n**Note: Once this setting is completed, the value reported by the curtains will be synchronized. However, if the setting process times out or fails, it will result in a synchronization failure."
+    }
+  },
+  {
+    "id": "blind_width",
+    "type": "dropdown",
+    "label": { "en": "Blind Width" },
+    "hint": {
+      "en": "Set the blind width to more accurately estimate the remaining battery life."
+    },
+    "values": [
+      { "id": "34", "label": { "en": "34 in." } },
+      { "id": "35", "label": { "en": "35 in." } },
+      { "id": "36", "label": { "en": "36 in." } },
+      { "id": "37", "label": { "en": "37 in." } },
+      { "id": "38", "label": { "en": "38 in." } },
+      { "id": "39", "label": { "en": "39 in." } },
+      { "id": "40", "label": { "en": "40 in." } },
+      { "id": "41", "label": { "en": "41 in." } },
+      { "id": "42", "label": { "en": "42 in." } },
+      { "id": "43", "label": { "en": "43 in." } },
+      { "id": "44", "label": { "en": "44 in." } },
+      { "id": "45", "label": { "en": "45 in." } },
+      { "id": "46", "label": { "en": "46 in." } },
+      { "id": "47", "label": { "en": "47 in." } },
+      { "id": "48", "label": { "en": "48 in." } },
+      { "id": "49", "label": { "en": "49 in." } },
+      { "id": "50", "label": { "en": "50 in." } },
+      { "id": "51", "label": { "en": "51 in." } },
+      { "id": "52", "label": { "en": "52 in." } },
+      { "id": "53", "label": { "en": "53 in." } },
+      { "id": "54", "label": { "en": "54 in." } },
+      { "id": "55", "label": { "en": "55 in." } },
+      { "id": "56", "label": { "en": "56 in." } },
+      { "id": "57", "label": { "en": "57 in." } },
+      { "id": "58", "label": { "en": "58 in." } },
+      { "id": "59", "label": { "en": "59 in." } },
+      { "id": "60", "label": { "en": "60 in." } },
+      { "id": "61", "label": { "en": "61 in." } },
+      { "id": "62", "label": { "en": "62 in." } },
+      { "id": "63", "label": { "en": "63 in." } },
+      { "id": "64", "label": { "en": "64 in." } },
+      { "id": "65", "label": { "en": "65 in." } },
+      { "id": "66", "label": { "en": "66 in." } },
+      { "id": "67", "label": { "en": "67 in." } },
+      { "id": "68", "label": { "en": "68 in." } },
+      { "id": "69", "label": { "en": "69 in." } },
+      { "id": "70", "label": { "en": "70 in." } },
+      { "id": "71", "label": { "en": "71 in." } },
+      { "id": "72", "label": { "en": "72 in." } },
+      { "id": "73", "label": { "en": "73 in." } },
+      { "id": "74", "label": { "en": "74 in." } },
+      { "id": "75", "label": { "en": "75 in." } },
+      { "id": "76", "label": { "en": "76 in." } },
+      { "id": "77", "label": { "en": "77 in." } },
+      { "id": "78", "label": { "en": "78 in." } },
+      { "id": "79", "label": { "en": "79 in." } },
+      { "id": "80", "label": { "en": "80 in." } }
+    ]
+  }
+]

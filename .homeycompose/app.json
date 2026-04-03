@@ -1,12 +1,9 @@
 {
   "id": "com.thirdreality.app",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "compatibility": ">=12.5.0",
   "sdk": 3,
-  "platforms": [
-    "local",
-    "cloud"
-  ],
+  "platforms": ["local", "cloud"],
   "brandColor": "#12B2FA",
   "name": {
     "en": "Third Reality"
@@ -14,9 +11,7 @@
   "description": {
     "en": "Make Your Smart Home a Reality"
   },
-  "category": [
-    "tools"
-  ],
+  "category": ["tools"],
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",

@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Smart Blind"
+    "en": "Smart Blind Gen2"
   },
   "class": "blinds",
   "capabilities": [
@@ -15,15 +15,15 @@
     "large": "{{driverAssetsPath}}/images/large.png"
   },
   "energy": {
-    "batteries": ["AA", "AA", "AA", "AA"]
+    "batteries": ["OTHER", "OTHER", "OTHER", "OTHER"]
   },
   "zigbee": {
     "manufacturerName": ["Thirdreality", "Third Reality, Inc"],
-    "productId": ["3RSB015BZ"],
+    "productId": ["3RSB02015Z"],
     "endpoints": {
       "1": {
-        "clusters": [0, 1, 4, 5, 258],
-        "bindings": [258]
+        "clusters": [0, 1, 4, 5, 258, 65521],
+        "bindings": [258, 65521]
       }
     },
     "learnmode": {

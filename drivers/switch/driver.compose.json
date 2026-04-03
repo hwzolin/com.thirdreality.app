@@ -2,20 +2,12 @@
   "name": {
     "en": "Switch"
   },
-  "class": "other",
-  "capabilities": [
-    "onoff",
-    "measure_battery"
-  ],
+  "class": "light",
+  "capabilities": ["onoff", "measure_battery"],
   "energy": {
-    "batteries": [
-      "AAA",
-      "AAA"
-    ]
+    "batteries": ["AAA", "AAA"]
   },
-  "connectivity": [
-    "zigbee"
-  ],
+  "connectivity": ["zigbee"],
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
@@ -33,29 +25,13 @@
       "template": "add_devices"
     }
   ],
-  "platforms": [
-    "local",
-    "cloud"
-  ],
+  "platforms": ["local", "cloud"],
   "zigbee": {
-    "manufacturerName": [
-      "Thirdreality",
-      "Third Reality, Inc"
-    ],
-    "productId": [
-      "3RSS007Z",
-      "3RSS008Z",
-      "3RSS009Z"
-    ],
+    "manufacturerName": ["Thirdreality", "Third Reality, Inc"],
+    "productId": ["3RSS007Z", "3RSS008Z", "3RSS009Z"],
     "endpoints": {
       "1": {
-        "clusters": [
-          0,
-          1,
-          3,
-          4,
-          6
-        ]
+        "clusters": [0, 1, 3, 4, 6]
       }
     },
     "learnmode": {

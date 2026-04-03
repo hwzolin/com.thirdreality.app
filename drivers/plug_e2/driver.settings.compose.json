@@ -1,28 +1,28 @@
 [
-    {
-        "id": "start_up_on_off",
-        "type": "dropdown",
-        "label": { "en": "Start Up ON/OFF" },
-        "values": [
-        {
-            "id": "0",
-            "label": { "en": "OFF" }
-        },
-        {
-            "id": "1",
-            "label": { "en": "ON" }
-        },
-        {
-            "id": "2",
-            "label": { "en": "TOGGLE" }
-        },
-        {
-            "id": "255",
-            "label": { "en": "PREVIOUS" }
-        }
-        ]
-    },
-    {
+  {
+    "id": "start_up_on_off",
+    "type": "dropdown",
+    "label": { "en": "Start Up ON/OFF" },
+    "values": [
+      {
+        "id": "0",
+        "label": { "en": "OFF" }
+      },
+      {
+        "id": "1",
+        "label": { "en": "ON" }
+      },
+      {
+        "id": "2",
+        "label": { "en": "TOGGLE" }
+      },
+      {
+        "id": "255",
+        "label": { "en": "PREVIOUS" }
+      }
+    ]
+  },
+  {
     "id": "count_down_time",
     "type": "number",
     "label": { "en": "Count Down Time" },
@@ -30,5 +30,5 @@
     "min": 0,
     "max": 65535,
     "units": { "en": "seconds" }
-    }
+  }
 ]

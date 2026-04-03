@@ -1,51 +1,88 @@
-'use strict';
+"use strict";
 
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER } = require("zigbee-clusters");
 
 class thermalSensor extends ZigBeeDevice {
-
   /**
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
     try {
-      this.log('Thermal Sensor has been initialized');
-      await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
-      zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
-        .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
+      this.log("Thermal Sensor has been initialized");
+      await this.registerCapability(
+        "measure_battery",
+        CLUSTER.POWER_CONFIGURATION,
+      );
+      zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME].on(
+        "attr.measuredValue",
+        this.onTemperatureMeasuredAttributeReport.bind(this),
+      );
 
       // measure_humidity
-      zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME]
-        .on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
+      zclNode.endpoints[1].clusters[
+        CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME
+      ].on(
+        "attr.measuredValue",
+        this.onRelativeHumidityMeasuredAttributeReport.bind(this),
+      );
 
       // measure_battery // alarm_battery
-      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-        .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-
+      zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME].on(
+        "attr.batteryPercentageRemaining",
+        this.onBatteryPercentageRemainingAttributeReport.bind(this),
+      );
     } catch (err) {
-      this.log(err)
-    } 
+      this.log(err);
+    }
   }
 
   onTemperatureMeasuredAttributeReport(measuredValue) {
-    const temperatureOffset = this.getSetting('temperature_offset') || 0;
-    const parsedValue = this.getSetting('temperature_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
-    this.log('measure_temperature | temperatureMeasurement - measuredValue (temperature):', parsedValue, '+ temperature offset', temperatureOffset);
-    this.setCapabilityValue('measure_temperature', parsedValue + temperatureOffset).catch(this.error);
+    const temperatureOffset = this.getSetting("temperature_offset") || 0;
+    const parsedValue =
+      this.getSetting("temperature_decimals") === "2"
+        ? Math.round((measuredValue / 100) * 100) / 100
+        : Math.round((measuredValue / 100) * 10) / 10;
+    this.log(
+      "measure_temperature | temperatureMeasurement - measuredValue (temperature):",
+      parsedValue,
+      "+ temperature offset",
+      temperatureOffset,
+    );
+    this.setCapabilityValue(
+      "measure_temperature",
+      parsedValue + temperatureOffset,
+    ).catch(this.error);
   }
 
   onRelativeHumidityMeasuredAttributeReport(measuredValue) {
-    const humidityOffset = this.getSetting('humidity_offset') || 0;
-    const parsedValue = this.getSetting('humidity_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
-    this.log('measure_humidity | relativeHumidity - measuredValue (humidity):', parsedValue, '+ humidity offset', humidityOffset);
-    this.setCapabilityValue('measure_humidity', parsedValue + humidityOffset).catch(this.error);
+    const humidityOffset = this.getSetting("humidity_offset") || 0;
+    const parsedValue =
+      this.getSetting("humidity_decimals") === "2"
+        ? Math.round((measuredValue / 100) * 100) / 100
+        : Math.round((measuredValue / 100) * 10) / 10;
+    this.log(
+      "measure_humidity | relativeHumidity - measuredValue (humidity):",
+      parsedValue,
+      "+ humidity offset",
+      humidityOffset,
+    );
+    this.setCapabilityValue(
+      "measure_humidity",
+      parsedValue + humidityOffset,
+    ).catch(this.error);
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
-    const batteryThreshold = this.getSetting('batteryThreshold') || 20;
-    this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2);
-    this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
+    const batteryThreshold = this.getSetting("batteryThreshold") || 20;
+    this.log(
+      "measure_battery | powerConfiguration - batteryPercentageRemaining (%): ",
+      batteryPercentageRemaining / 2,
+    );
+    this.setCapabilityValue(
+      "measure_battery",
+      batteryPercentageRemaining / 2,
+    ).catch(this.error);
   }
 
   // async setTemperaturAndHumidityConfigReport(oldSettings, newSettings, changedKeys) {
@@ -99,14 +136,11 @@ class thermalSensor extends ZigBeeDevice {
   //   }
   // }
 
-
-
-
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('Thermal Sensor has been added');
+    this.log("Thermal Sensor has been added");
   }
 
   /**
@@ -119,7 +153,7 @@ class thermalSensor extends ZigBeeDevice {
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
     // await this.setTemperaturAndHumidityConfigReport(oldSettings, newSettings, changedKeys)
-    this.log('Thermal sensor settings where changed');
+    this.log("Thermal sensor settings where changed");
   }
 
   /**
@@ -128,16 +162,15 @@ class thermalSensor extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('Thermal Sensor was renamed');
+    this.log("Thermal Sensor was renamed");
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Thermal Sensor has been deleted');
+    this.log("Thermal Sensor has been deleted");
   }
-
 }
 
 module.exports = thermalSensor;

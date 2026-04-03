@@ -1,48 +1,79 @@
-'use strict';
+"use strict";
 
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER } = require("zigbee-clusters");
 
 class VibrationSensor extends ZigBeeDevice {
-
   /**
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
     try {
-      this.log('Vibration Sensor has been initialized');
+      if (
+        this.hasCapability("alarm_generic") ||
+        !this.hasCapability("alarm_vibration")
+      ) {
+        this.removeCapability("alarm_generic");
+        this.addCapability("alarm_vibration");
+      }
+
+      this.log("Vibration Sensor has been initialized");
       if (this.getClusterEndpoint(CLUSTER.IAS_ZONE)) {
-        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.IAS_ZONE)].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
-          this.onIASZoneStatusChangeNotification(payload)
+        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.IAS_ZONE)].clusters[
+          CLUSTER.IAS_ZONE.NAME
+        ].onZoneStatusChangeNotification = (payload) => {
+          this.onIASZoneStatusChangeNotification(payload);
         };
       }
       if (this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)) {
-        zclNode.endpoints[this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
-          .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
+        zclNode.endpoints[
+          this.getClusterEndpoint(CLUSTER.POWER_CONFIGURATION)
+        ].clusters[CLUSTER.POWER_CONFIGURATION.NAME].on(
+          "attr.batteryPercentageRemaining",
+          this.onBatteryPercentageRemainingAttributeReport.bind(this),
+        );
       }
     } catch (err) {
-      this.log(err)
+      this.log(err);
     }
   }
-
 
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('Vibration Sensor has been added');
+    this.log("Vibration Sensor has been added");
   }
 
-  onIASZoneStatusChangeNotification({ zoneStatus, extendedStatus, zoneId, delay, }) {
-    this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
-    this.log('zoneStatus', zoneStatus.alarm1);
-    this.setCapabilityValue('alarm_generic', zoneStatus.alarm1).catch(this.error);
+  onIASZoneStatusChangeNotification({
+    zoneStatus,
+    extendedStatus,
+    zoneId,
+    delay,
+  }) {
+    this.log(
+      "IASZoneStatusChangeNotification received:",
+      zoneStatus,
+      extendedStatus,
+      zoneId,
+      delay,
+    );
+    this.log("zoneStatus", zoneStatus.alarm1);
+    this.setCapabilityValue("alarm_vibration", zoneStatus.alarm1).catch(
+      this.error,
+    );
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {
-    const batteryThreshold = this.getSetting('batteryThreshold') || 20;
-    this.log("measure_battery | powerConfiguration - batteryPercentageRemaining (%): ", batteryPercentageRemaining / 2);
-    this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
+    const batteryThreshold = this.getSetting("batteryThreshold") || 20;
+    this.log(
+      "measure_battery | powerConfiguration - batteryPercentageRemaining (%): ",
+      batteryPercentageRemaining / 2,
+    );
+    this.setCapabilityValue(
+      "measure_battery",
+      batteryPercentageRemaining / 2,
+    ).catch(this.error);
   }
 
   /**
@@ -54,7 +85,7 @@ class VibrationSensor extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('Vibration Sensor settings where changed');
+    this.log("Vibration Sensor settings where changed");
   }
 
   /**
@@ -63,16 +94,15 @@ class VibrationSensor extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('Vibration Sensor was renamed');
+    this.log("Vibration Sensor was renamed");
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Vibration Sensor has been deleted');
+    this.log("Vibration Sensor has been deleted");
   }
-
 }
 
 module.exports = VibrationSensor;

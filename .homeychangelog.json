@@ -58,5 +58,8 @@
   },
   "1.0.20": {
     "en": "Fix the issue that Color Bulb ZL1 doesn't work after the version update."
+  },
+  "1.0.21": {
+    "en": "Fix the issue where the humidity value of the Smart Soil Moisture Sensor does not change after the APP is updated."
   }
 }
