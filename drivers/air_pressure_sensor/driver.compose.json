@@ -3,7 +3,7 @@
     "en": "Smart Air Pressure Sensor"
   },
   "class": "sensor",
-  "capabilities": ["measure_battery", "measure_pressure"],
+  "capabilities": ["measure_battery", "measure_pressure", "measure_aqi"],
   "platforms": ["local", "cloud"],
   "connectivity": ["zigbee"],
   "images": {

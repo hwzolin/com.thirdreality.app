@@ -32,12 +32,70 @@
   "drivers": [
     {
       "name": {
+        "en": "Smart Presence Sensor R2"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_motion"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "energy": {
+        "batteries": [
+          "AA",
+          "AA",
+          "AA"
+        ]
+      },
+      "images": {
+        "small": "/drivers/Radar_24G/assets/images/small.png",
+        "large": "/drivers/Radar_24G/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RPS01083Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280,
+              65281
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the `Level` button for more than 10 seconds until the sensitivity indicator turns on. Release the button, and the device will enter pairing mode.\nConfirm the sensitivity indicator is flashing rapidly"
+          }
+        }
+      },
+      "id": "Radar_24G"
+    },
+    {
+      "name": {
         "en": "Smart Air Pressure Sensor"
       },
       "class": "sensor",
       "capabilities": [
         "measure_battery",
-        "measure_pressure"
+        "measure_pressure",
+        "measure_aqi"
       ],
       "platforms": [
         "local",
@@ -1830,7 +1888,8 @@
         "light_mode",
         "onoff",
         "measure_luminance",
-        "volatile_organic_compounds_capability"
+        "volatile_organic_compounds_capability",
+        "measure_tvoc"
       ],
       "platforms": [
         "local",
@@ -3126,58 +3185,6 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "voc_less_than",
-        "title": {
-          "en": "Voc less than"
-        },
-        "titleFormatted": {
-          "en": "Volatile organic compounds less than [[voc_value]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=radar_60G"
-          },
-          {
-            "type": "number",
-            "name": "voc_value",
-            "title": {
-              "en": "Voc value"
-            },
-            "unit": {
-              "en": "ppb"
-            }
-          }
-        ]
-      },
-      {
-        "id": "voc_greater_than",
-        "title": {
-          "en": "Voc greater than"
-        },
-        "titleFormatted": {
-          "en": "Volatile organic compounds greater than [[voc_value]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=radar_60G"
-          },
-          {
-            "type": "number",
-            "name": "voc_value",
-            "title": {
-              "en": "Voc value"
-            },
-            "unit": {
-              "en": "ppb"
-            }
           }
         ]
       },
