@@ -81,7 +81,7 @@
         },
         "learnmode": {
           "instruction": {
-            "en": "Press and hold the `Level` button for more than 10 seconds until the sensitivity indicator turns on. Release the button, and the device will enter pairing mode.\nConfirm the sensitivity indicator is flashing rapidly"
+            "en": "Press and hold the `Level` button for more than 10 seconds until the sensitivity indicator turns on. Release the button, and the device will enter pairing mode.\nConfirm the sensitivity indicator is flashing rapidly."
           }
         }
       },
@@ -1888,7 +1888,6 @@
         "light_mode",
         "onoff",
         "measure_luminance",
-        "volatile_organic_compounds_capability",
         "measure_tvoc"
       ],
       "platforms": [

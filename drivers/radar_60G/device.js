@@ -48,29 +48,42 @@ class Radar_60G extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
+    await this.configAttributeReport();
+    await this.readLevelContorlAttributes();
+    await this.readColorControlAttributes();
 
-    await this.configAttributeReport()
-    await this.readLevelContorlAttributes()
-    await this.readColorControlAttributes()
-    
-    await this.registerCapability("light_saturation", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("light_temperature", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("light_hue", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL)
-    await this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
-    await this.registerCapability("onoff", CLUSTER.ON_OFF)
+    await this.registerCapability("light_saturation", CLUSTER.COLOR_CONTROL);
+    await this.registerCapability("light_temperature", CLUSTER.COLOR_CONTROL);
+    await this.registerCapability("light_hue", CLUSTER.COLOR_CONTROL);
+    await this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL);
+    await this.registerCapability("dim", CLUSTER.LEVEL_CONTROL);
+    await this.registerCapability("onoff", CLUSTER.ON_OFF);
 
-    await zclNode.endpoints[1].clusters.onOff.on("attr.onOff", value => {
-        this.log("onoff: ",value)
-        this.setCapabilityValue('onoff', value).catch(error => this.log(error))
-      })
+    if (
+      this.hasCapability("volatile_organic_compounds_capability") ||
+      !this.hasCapability("measure_tvoc")
+    ) {
+      this.removeCapability("volatile_organic_compounds_capability");
+      this.addCapability("measure_tvoc");
+    }
+    await this.setCapabilityOptions("measure_tvoc", {
+      units: { en: "ppb" },
+    });
 
-    await zclNode.endpoints[1].clusters.vocPrivateCluster.on("attr.vocValue", value => {
-        this.log("vocValue: ",value)
-        this.setCapabilityValue('volatile_organic_compounds_capability', value).catch(error => this.log(error))
-        this.driver.triggerVocLessThanTrigger(this,value)
-        this.driver.triggerVocGreaterThanTrigger(this,value)
-      })
+    // alarm_motion
+    await zclNode.endpoints[1].clusters.occupancySensing.on(
+      "attr.occupancy",
+      this.onOccupancySensingChangeNotification.bind(this),
+    );
+    await zclNode.endpoints[1].clusters.illuminanceMeasurement.on(
+      "attr.measuredValue",
+      this.setLuminanceValue.bind(this),
+    );
+
+    await zclNode.endpoints[1].clusters.onOff.on("attr.onOff", (value) => {
+      this.log("onoff: ", value);
+      this.setCapabilityValue("onoff", value).catch((error) => this.log(error));
+    });
 
     await zclNode.endpoints[1].clusters.vocPrivateCluster.on(
       "attr.vocValue",
@@ -127,9 +140,6 @@ class Radar_60G extends ZigBeeDevice {
       supportsColorTemperature: this.supportsColorTemperature,
       colorTemperatureRange: this.colorTemperatureRange,
     });
-
-
-
   }
   /**
    * onAdded is called when the user adds the device, called just after pairing.
@@ -137,7 +147,6 @@ class Radar_60G extends ZigBeeDevice {
   async onAdded() {
     this.log("Radar 60G has been added");
   }
-
 
   /**
    * onSettings is called when the user updates the device's settings.
@@ -401,9 +410,6 @@ class Radar_60G extends ZigBeeDevice {
     );
     return this.colorControlCluster.moveToColor(moveToColorCommand);
   }
-
-
-
 
   async registerColorCapabilities({ zclNode }) {
     // Register debounced capabilities
@@ -825,9 +831,5 @@ class Radar_60G extends ZigBeeDevice {
     }
   }
 }
-
-
-
-
 
 module.exports = Radar_60G;
