@@ -52,13 +52,6 @@ class Radar_60G extends ZigBeeDevice {
     await this.readLevelContorlAttributes();
     await this.readColorControlAttributes();
 
-    await this.registerCapability("light_saturation", CLUSTER.COLOR_CONTROL);
-    await this.registerCapability("light_temperature", CLUSTER.COLOR_CONTROL);
-    await this.registerCapability("light_hue", CLUSTER.COLOR_CONTROL);
-    await this.registerCapability("light_mode", CLUSTER.COLOR_CONTROL);
-    await this.registerCapability("dim", CLUSTER.LEVEL_CONTROL);
-    await this.registerCapability("onoff", CLUSTER.ON_OFF);
-
     if (
       this.hasCapability("volatile_organic_compounds_capability") ||
       !this.hasCapability("measure_tvoc")
@@ -633,7 +626,6 @@ class Radar_60G extends ZigBeeDevice {
         "light_mode" && this.getCapabilityValue("light_mode") !== "color",
       )
     ) {
-      this.log("qweqweqeqeqqweqeq");
       await this.setCapabilityValue("light_mode", "color").catch(this.error);
     }
 
