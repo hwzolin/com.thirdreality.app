@@ -3,6 +3,16 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.22
+- Added support for Judge Height, Pre-Setting Bottom Height, and Blind Width in the Advanced Settings of the second-generation curtains.
+- Optimized the issue where the low-version first-generation humidity and temperature sensor could not be added.
+- Changed the switch type to light.
+- Modified the alarm capability of the vibration sensor to alarm_vibration.
+- Support for air pressure sensor.
+- Replaced the custom TVOC capability of the 60G radar with the official capability.
+- Support for 24G radar.
+- Support for T&H Sensor Lite Gen2
+
 ### v1.00.21
 - Fix the issue where the humidity value of the Smart Soil Moisture Sensor does not change after the APP is updated.
 
