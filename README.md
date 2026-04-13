@@ -11,7 +11,7 @@ ThirdReality Devices support without Bridge for Homey
 - Support for air pressure sensor.
 - Replaced the custom TVOC capability of the 60G radar with the official capability.
 - Support for 24G radar.
-- Support for T&H Sensor Lite Gen2
+- Support for T&H Sensor Lite Gen2.
 
 ### v1.00.21
 - Fix the issue where the humidity value of the Smart Soil Moisture Sensor does not change after the APP is updated.

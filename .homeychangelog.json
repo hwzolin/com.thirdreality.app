@@ -61,5 +61,8 @@
   },
   "1.0.21": {
     "en": "Fix the issue where the humidity value of the Smart Soil Moisture Sensor does not change after the APP is updated."
+  },
+  "1.0.22": {
+    "en": "1. Added support for Judge Height, Pre-Setting Bottom Height, and Blind Width in the Advanced Settings of the second-generation curtains.\\n2. Optimized the issue where the low-version first-generation humidity and temperature sensor could not be added.\\n3. Changed the switch type to light\\n4. Modified the alarm capability of the vibration sensor to alarm_vibration\\n5. Supports air pressure sensor, 24G radar and T&H Sensor Lite Gen2.\\n6. Optimize other features."
   }
 }
