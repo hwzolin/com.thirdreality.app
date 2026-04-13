@@ -104,6 +104,12 @@
       "connectivity": [
         "zigbee"
       ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
       "images": {
         "small": "/drivers/air_pressure_sensor/assets/images/small.png",
         "large": "/drivers/air_pressure_sensor/assets/images/large.png",
