@@ -16,6 +16,7 @@ module.exports = class airPressureSensor extends ZigBeeDevice {
     });
     await this.setCapabilityOptions("measure_aqi", {
       title: { en: "Dirty Level" },
+      units: { en: "%" },
     });
 
     await this.configAttributeReport();

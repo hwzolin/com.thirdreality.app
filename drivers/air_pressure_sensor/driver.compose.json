@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Smart Air Pressure Sensor"
+    "en": "Smart Filter Sensor"
   },
   "class": "sensor",
   "capabilities": ["measure_battery", "measure_pressure", "measure_aqi"],
