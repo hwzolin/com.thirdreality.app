@@ -48,12 +48,8 @@ class Radar_60G extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
-    await this.configAttributeReport();
-    await this.readLevelContorlAttributes();
-    await this.readColorControlAttributes();
-
     if (
-      this.hasCapability("volatile_organic_compounds_capability") ||
+      this.hasCapability("volatile_organic_compounds_capability") &&
       !this.hasCapability("measure_tvoc")
     ) {
       this.removeCapability("volatile_organic_compounds_capability");
@@ -127,6 +123,15 @@ class Radar_60G extends ZigBeeDevice {
     ) {
       await this.registerColorCapabilities({ zclNode });
     }
+
+    try {
+      await this.configAttributeReport();
+      await this.readLevelContorlAttributes();
+      await this.readColorControlAttributes();
+    } catch (error) {
+      this.error("Failed to initialize some attributes, but continuing...", error);
+    }
+
 
     this.log("ZigBeeLightDevice is initialized", {
       supportsHueAndSaturation: this.supportsHueAndSaturation,
@@ -377,7 +382,7 @@ class Radar_60G extends ZigBeeDevice {
 
     this.error(
       "Warning: this device does not support 'moveToColorTemperature', it should" +
-        " not have the 'light_temperature' capability",
+      " not have the 'light_temperature' capability",
     );
 
     // Calculate fake temperature range

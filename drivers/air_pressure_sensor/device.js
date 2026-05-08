@@ -11,15 +11,18 @@ module.exports = class airPressureSensor extends ZigBeeDevice {
     this.log("Air Pressure Sensor has been initialized");
     this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
     this.registerCapability("measure_aqi", CLUSTER.ANALOG_INPUT);
-    await this.setCapabilityOptions("measure_pressure", {
-      units: { en: "kPa" },
-    });
+
     await this.setCapabilityOptions("measure_aqi", {
       title: { en: "Dirty Level" },
       units: { en: "%" },
     });
 
-    await this.configAttributeReport();
+    try {
+      await this.configAttributeReport();
+    } catch (error) {
+      this.error("Failed to configure reporting, will retry later", err);
+    }
+
 
     // measure_battery // alarm_battery
     zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME].on(
@@ -69,6 +72,10 @@ module.exports = class airPressureSensor extends ZigBeeDevice {
   }
 
   onMeasuredValueAttributeReport(measurePressureValue) {
+    this.addCapability("measure_pressure");
+    this.setCapabilityOptions("measure_pressure", {
+      units: { en: "kPa" },
+    });
     const measurePressureValue_kPa = measurePressureValue / 10;
     this.log("measurePressureValue_kPa: ", measurePressureValue_kPa);
     this.setCapabilityValue("measure_pressure", measurePressureValue_kPa).catch(

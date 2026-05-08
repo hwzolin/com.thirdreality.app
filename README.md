@@ -3,6 +3,12 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.23
+- LAS-14: The name displayed for the air pressure sensor in Homey should be changed to "Smart Filter Sensor".
+- Add the unit "% " to the dirty level of Smart Filter Sensor in Homey.
+- Determine the display of the "measure_pressure" capability based on whether the pressure value is reported by Smart Filter Sensor.
+- Fix the issue where Homey Pro shows the prompt "Missing Capability Listener" when it is powered on after a power outage.
+
 ### v1.00.22
 - Added support for Judge Height, Pre-Setting Bottom Height, and Blind Width in the Advanced Settings of the second-generation curtains.
 - Optimized the issue where the low-version first-generation humidity and temperature sensor could not be added.

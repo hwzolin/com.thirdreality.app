@@ -3,7 +3,7 @@
     "en": "Smart Filter Sensor"
   },
   "class": "sensor",
-  "capabilities": ["measure_battery", "measure_pressure", "measure_aqi"],
+  "capabilities": ["measure_battery", "measure_aqi"],
   "platforms": ["local", "cloud"],
   "connectivity": ["zigbee"],
   "energy": {
