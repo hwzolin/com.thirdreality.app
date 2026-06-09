@@ -75,9 +75,9 @@ class Radar_60G extends ZigBeeDevice {
     });
 
     await zclNode.endpoints[1].clusters.vocPrivateCluster.on(
-      "attr.vocValue",
+      "attr.tvocValue",
       (value) => {
-        this.log("vocValue: ", value);
+        this.log("tvocValue: ", value);
         this.setCapabilityValue("measure_tvoc", value).catch((error) =>
           this.log(error),
         );

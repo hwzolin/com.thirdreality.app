@@ -1,0 +1,48 @@
+{
+  "name": {
+    "en": "Smart Air Quality Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_tvoc_index",
+    "measure_co2",
+    "measure_humidity",
+    "measure_temperature"
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RAQ1096Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1026,
+          1029,
+          1037,
+          1070
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "Press and hold the reset button until the red light is on, and then release button."
+      }
+    }
+  }
+}

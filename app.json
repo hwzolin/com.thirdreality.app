@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "compatibility": ">=12.5.0",
   "sdk": 3,
   "platforms": [
@@ -142,6 +142,55 @@
         }
       },
       "id": "air_pressure_sensor"
+    },
+    {
+      "name": {
+        "en": "Smart Air Quality Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_tvoc_index",
+        "measure_co2",
+        "measure_humidity",
+        "measure_temperature"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/air_quality_sensor/assets/images/small.png",
+        "large": "/drivers/air_quality_sensor/assets/images/large.png",
+        "xlarge": "/drivers/air_quality_sensor/assets/images/xlarge.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RAQ1096Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1026,
+              1029,
+              1037,
+              1070
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is on, and then release button."
+          }
+        }
+      },
+      "id": "air_quality_sensor"
     },
     {
       "name": {
@@ -407,7 +456,7 @@
         },
         "learnmode": {
           "instruction": {
-            "en": "Press and hold the reset button until the red light is blinking."
+            "en": "Press and hold the reset button until the red LED turns on, then release the button to reset the sensor."
           }
         }
       },
@@ -1303,7 +1352,23 @@
           }
         }
       },
-      "id": "motion"
+      "id": "motion",
+      "settings": [
+        {
+          "id": "cooldown_time",
+          "type": "number",
+          "label": {
+            "en": "Cooldown Time"
+          },
+          "step": 1,
+          "value": 30,
+          "min": 0,
+          "max": 3600,
+          "units": {
+            "en": "seconds"
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -1360,7 +1425,23 @@
           }
         }
       },
-      "id": "motion_sensor_r1"
+      "id": "motion_sensor_r1",
+      "settings": [
+        {
+          "id": "cooldown_time",
+          "type": "number",
+          "label": {
+            "en": "Cooldown Time"
+          },
+          "step": 1,
+          "value": 30,
+          "min": 0,
+          "max": 3600,
+          "units": {
+            "en": "seconds"
+          }
+        }
+      ]
     },
     {
       "name": {

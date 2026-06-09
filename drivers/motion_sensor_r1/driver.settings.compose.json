@@ -1,0 +1,16 @@
+[
+    {
+        "id": "cooldown_time",
+        "type": "number",
+        "label": {
+            "en": "Cooldown Time"
+        },
+        "step": 1,
+        "value": 30,
+        "min": 0,
+        "max": 3600,
+        "units": {
+            "en": "seconds"
+        }
+    }
+]

@@ -20,7 +20,7 @@ module.exports = class airPressureSensor extends ZigBeeDevice {
     try {
       await this.configAttributeReport();
     } catch (error) {
-      this.error("Failed to configure reporting, will retry later", err);
+      this.error("Failed to configure reporting, will retry later", error);
     }
 
 

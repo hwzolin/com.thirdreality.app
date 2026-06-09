@@ -2,6 +2,9 @@
 
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER, Cluster } = require("zigbee-clusters");
+const motionCooldownTimeCluster = require("../../lib/motionCooldownTimeSpecificCluster")
+
+Cluster.addCluster(motionCooldownTimeCluster)
 
 class MotionR1 extends ZigBeeDevice {
 
@@ -104,6 +107,14 @@ class MotionR1 extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
+
+    this.log(newSettings)
+    for (const changedKey of changedKeys) {
+      if (changedKey == "cooldown_time") {
+        await this.zclNode.endpoints[1].clusters["coolDownTime"].writeAttributes({ coolDownTime: newSettings["cooldown_time"] }).catch(err => { this.error(err) })
+        // await this.zclNode.endpoints[1].clusters["coolDownTime"].readAttributes(["coolDownTime"]).catch(err => { this.error(err)})
+      }
+    }
     this.log('Motion Sensor R1 settings where changed');
   }
 
