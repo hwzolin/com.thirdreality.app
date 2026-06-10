@@ -104,7 +104,7 @@ class Motion extends ZigBeeDevice {
 
     this.log(newSettings)
     for (const changedKey of changedKeys) {
-      if (changedKey == "cooldown_time") {
+      if (changedKey === "cooldown_time") {
         await this.zclNode.endpoints[1].clusters["coolDownTime"].writeAttributes({ coolDownTime: newSettings["cooldown_time"] }).catch(err => { this.error(err) })
         // await this.zclNode.endpoints[1].clusters["coolDownTime"].readAttributes(["coolDownTime"]).catch(err => { this.error(err)})
       }
