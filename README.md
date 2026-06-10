@@ -3,6 +3,12 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.24
+- Modify the prompt information for the process of adding the door magnetic sensor
+- Modify the error handling for exceptions in the air pressure sensor code
+- Support air quality sensor
+- In response to the issue raised by users regarding the excessively long trigger duration of the motion sensor and 5.8G radar (url: https://github.com/hwzolin/com.thirdreality.app/issues/39), the cooldown function setting has been added.
+
 ### v1.00.23
 - LAS-14: The name displayed for the air pressure sensor in Homey should be changed to "Smart Filter Sensor".
 - Add the unit "% " to the dirty level of Smart Filter Sensor in Homey.
