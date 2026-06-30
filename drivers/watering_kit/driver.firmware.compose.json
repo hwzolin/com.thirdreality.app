@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. Since version 44 has been changed to perform the judgment each time it is awakened, the judgment and printing of battery usage every minute have been removed.\\n2. Added the bind function that can be used within 6 minutes of initial matching, and added three clusters: identify, groups, and scenes.\\n3. Added the toggle control function."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RWK0148Z"
+      },
+      "files": [
+        {
+          "fileVersion": 45,
+          "imageType": 54192,
+          "manufacturerCode": 5127,
+          "size": 151762,
+          "name": "3RWK0148Z_ZHA_045_20260512_071544.ota",
+          "integrity": "sha256:f8bd06c2ec9b37b67d0ffb972294276fe2f2f47c9d80b88c98c2826b3738de1c"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

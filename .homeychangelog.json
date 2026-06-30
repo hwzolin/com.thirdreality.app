@@ -67,5 +67,11 @@
   },
   "1.0.23": {
     "en": "Fix the issue where Homey Pro shows the prompt 'Missing Capability Listener' when it is powered on after a power outage."
+  },
+  "1.0.24": {
+    "en": "Support air quality sensor. In response to the issue raised by users regarding the excessively long trigger duration of the motion sensor and 5.8G radar (url: https://github.com/hwzolin/com.thirdreality.app/issues/39), the cooldown function setting has been added."
+  },
+  "1.0.25": {
+    "en": "Support OTA for some of our company's devices."
   }
 }

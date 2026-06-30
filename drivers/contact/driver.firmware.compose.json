@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Modification of poll_rate setting.\\nOptimization of delay function delay time."
+      },
+      "device": {
+        "manufacturerName": [
+          "THIRDREALITY",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RDS17BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 63,
+          "imageType": 54178,
+          "manufacturerCode": 4659,
+          "size": 131682,
+          "name": "3RDS17BZ_ZHA_063_20260512_062544.ota",
+          "integrity": "sha256:18931a8bb5033f2c1ba9018603a7dcdd0b3d0ea206a5cf77be6ab451b4eec80c"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

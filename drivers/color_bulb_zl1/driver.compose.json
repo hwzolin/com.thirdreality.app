@@ -22,7 +22,7 @@
     "productId": ["3RCB01057Z", "3RCB02070Z", "3RCB1095Z"],
     "endpoints": {
       "1": {
-        "clusters": [0, 1, 6, 8, 768]
+        "clusters": [0, 1, 6, 8, 25, 768]
       }
     },
     "learnmode": {

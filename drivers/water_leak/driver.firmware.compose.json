@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Optimize the button to prevent it from entering sleep mode."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RWS18BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 73,
+          "imageType": 54179,
+          "manufacturerCode": 4659,
+          "size": 145586,
+          "name": "3RWS18BZ_ZHA_073_20260512_074532.ota",
+          "integrity": "sha256:380a3a247c38f153bbafe7cf8dfe1c651f519b5521e61dedbf65bf876e32ff29"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. Optimize the electrical differences in the soil.\\n2. Remove the echo mode."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSM0347Z"
+      },
+      "files": [
+        {
+          "fileVersion": 21,
+          "imageType": 54207,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 264830,
+          "name": "3RSM0347Z_ZHA_021_20260512_071259.ota",
+          "integrity": "sha256:546eb6ade7e0904a8b6e9bc424aa033410f376cf216c4c7d03eaefe74a710d7f"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

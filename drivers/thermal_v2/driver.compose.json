@@ -22,8 +22,8 @@
     "productId": ["3RTHS0224Z", "3RTHS0324Z"],
     "endpoints": {
       "1": {
-        "clusters": [0, 1, 19, 32, 1026, 1029],
-        "bindings": [0, 1, 19, 32, 1026, 1029]
+        "clusters": [0, 1, 19, 25, 32, 1026, 1029],
+        "bindings": [0, 1, 19, 25, 32, 1026, 1029]
       }
     },
     "learnmode": {

@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Change the specified string version number to 1.01.01, and the appversion remains 101."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSP019BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 268513381,
+          "imageType": 54182,
+          "manufacturerCode": 4659,
+          "size": 198146,
+          "name": "3RSP019BZ-28BZ-44BZ_ZHA_101_20260512_081147.ota",
+          "integrity": "sha256:50dc097b41d8675dd3753175401e5360e5166c1640c1bbd5d4e32a76804e0cb0"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

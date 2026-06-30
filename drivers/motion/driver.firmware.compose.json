@@ -1,0 +1,26 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. When sending the \"clear\" package, turn off the red light for one second. \\n2. The maximum value of the private delay function has been changed from 65535 to 3600. \\n3. The implementation method of health detection has been changed to the state machine approach. \\n4. The restart time for no_zigbee has been changed from 10 minutes to 30 minutes. The restart time for no_sleep has been changed from 0.5 hours to 1 hour. The restart time for unified health detection has been standardized."
+      },
+      "device": {
+        "manufacturerName": "Third Reality, Inc",
+        "productId": "3RMS16BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 79,
+          "imageType": 54177,
+          "manufacturerCode": 4659,
+          "size": 132610,
+          "name": "3RMS16BZ_ZHA_079_20260512_065253.ota",
+          "integrity": "sha256:37c210b25dc98722f1327030481eb4aa5238d07c8d907f76a0eef32cd6f70832"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

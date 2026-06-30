@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. Optimize the private cluster\\n2. Swap the private cluster and store the flash location\\n3. Change the full charge voltage to 3V\\n4. Control the private cluster on/off and report the status in time"
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSS009Z"
+      },
+      "files": [
+        {
+          "fileVersion": 36,
+          "imageType": 54181,
+          "manufacturerCode": 4659,
+          "size": 153570,
+          "name": "3RSS009Z_ZHA_036_20260512_073153.ota",
+          "integrity": "sha256:bee4e01cce8dd2a729bdfaa552e1fed0f3914571544d06280ef90603827e7368"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

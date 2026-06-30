@@ -1,0 +1,31 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Optimize power consumption. When an alarm is triggered, a red light will flash for a moment, then the alarm disappears. There is no need for the red light to remain on."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RWS0218Z"
+      },
+      "files": [
+        {
+          "fileVersion": 17,
+          "imageType": 54210,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 261534,
+          "name": "3RWS0218Z_ZHA_017_20260512_074840.ota",
+          "integrity": "sha256:44ed5a0ac0b5f20a63138e48c7f4ed498d8dd404b1b4230bb8e3e6e1a51e1530"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

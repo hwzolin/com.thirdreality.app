@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "After canceling the OTA during the curtain's operation and restarting the device, the issue of being unable to initiate another OTA was resolved.\\nDuring the curtain's movement, commands like reverse on/off are not accepted. Only a stop command can be given to solve the situation where two contradictory commands, \"on\" and \"100%\", are sent simultaneously by ECHOV4.\\nAfter setting the bind attribute to 1, change it to 0.\\nDuring the initialization startup, if it is 0%, set the value to \"on\"; if it is 100%, set the value to \"off\"."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSB015BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 84,
+          "imageType": 54183,
+          "manufacturerCode": 4659,
+          "size": 157106,
+          "name": "3RSB015BZ_ZHA_084_20260512_072044.ota",
+          "integrity": "sha256:5599d9289d3ff8d86a44c21acda9ebb882d7aa3f1b6c75fc91b316d100e1c26b"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

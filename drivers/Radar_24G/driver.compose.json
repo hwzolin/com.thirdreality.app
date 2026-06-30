@@ -18,7 +18,7 @@
     "productId": ["3RPS01083Z"],
     "endpoints": {
       "1": {
-        "clusters": [0, 1, 1280, 65281],
+        "clusters": [0, 1, 25, 1280, 65281],
         "bindings": [1, 1280]
       }
     },

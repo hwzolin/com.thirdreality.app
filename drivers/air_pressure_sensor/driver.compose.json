@@ -19,7 +19,7 @@
     "productId": ["3RAP0149BZ"],
     "endpoints": {
       "1": {
-        "clusters": [0, 1, 12, 1027],
+        "clusters": [0, 1, 12, 25, 1027],
         "bindings": [1, 1027]
       }
     },

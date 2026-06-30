@@ -1,0 +1,31 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Fix the error where re-powering after network connection can be bound."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSNL02043Z"
+      },
+      "files": [
+        {
+          "fileVersion": 86,
+          "imageType": 0,
+          "manufacturerCode": 4877,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 298162,
+          "name": "3RSNL02043Z_ZHA_086_20260512_064023.ota",
+          "integrity": "sha256:7a8ba8fa38ae94433af5fb38cde4b5dd72aeab4fbd65722cc6d59169fe19650c"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

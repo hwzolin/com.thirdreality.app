@@ -1,0 +1,55 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "The toggle command uses a timer to prevent the onoff function from being called when the level event is 0."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RCB01057Z"
+      },
+      "files": [
+        {
+          "fileVersion": 74,
+          "imageType": 54188,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 280854,
+          "name": "Zigbee_A19_Bulb_OTA_V74_1.00.74_3RCB01057Z.ota",
+          "integrity": "sha256:26012f7227f1ee40efbf30ed79a79eb61d09f8273b6fe6d78846204388d06f8a"
+        }
+      ]
+    },
+    {
+      "changelog": {
+        "en": "Fix: When the American standard and European standard bulbs are button-bound, pressing the button controls the bulb's toggle function. However, the reported status of the bulb is opposite to the actual status."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RCB02070Z"
+      },
+      "files": [
+        {
+          "fileVersion": 80,
+          "imageType": 54200,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 281598,
+          "name": "Zigbee_A60_Bulb_OTA_V80_1.00.80_3RCB02070Z.ota",
+          "integrity": "sha256:a389d2f06904fc8459f223108d8862a633bb298a859aba98e85abd040421aa22"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

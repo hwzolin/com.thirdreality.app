@@ -1,0 +1,31 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "After the OTA is completed, add an onoff delay to restart the timing.\\nThe solution to the problem where there is a short-term abnormality in the calibration data due to the presence of power after EP1 is turned off within 2 seconds.\\nReports do not require responses. Report only when the power factor difference is 10 or more, reducing information exchange."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RDP01072Z"
+      },
+      "files": [
+        {
+          "fileVersion": 42,
+          "imageType": 54197,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 286614,
+          "name": "3RDP01072Z_ZHA_042_20260512_075416.ota",
+          "integrity": "sha256:9893bdba95b9b11559ac08411262e754f9f280925a754d9127e57dc13cbbc3ba"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

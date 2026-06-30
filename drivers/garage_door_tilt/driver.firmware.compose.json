@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Remove the code logic that causes the device to enter sleep mode when reading data, and restore it to the logic used in version v29 where the device does not enter sleep mode when reading data."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RDTS01056Z"
+      },
+      "files": [
+        {
+          "fileVersion": 36,
+          "imageType": 54193,
+          "manufacturerCode": 5127,
+          "size": 137698,
+          "name": "3RDTS01056Z_ZHA_036_20260512_063644.ota",
+          "integrity": "sha256:7e2f98c206d5992f250a25d664b6d8a6edc131184fe07cb62ab5772cf2a54a85"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

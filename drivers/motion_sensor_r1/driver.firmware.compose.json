@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. When removing the \"notify\" function, remove the code that sets the device to poll once every 250 milliseconds. \\n2. Log the \"ManufactureID\" information. \\n3. After connecting to the network, report the battery level twice every 15 seconds. At the same time, support the reporting of battery percentage attribute configuration to prevent incompatibility on the Z2M platform."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSMR01067Z"
+      },
+      "files": [
+        {
+          "fileVersion": 16,
+          "imageType": 54194,
+          "manufacturerCode": 5127,
+          "size": 139858,
+          "name": "3RSMR01067Z_ZHA_016_20260623_091208.ota",
+          "integrity": "sha256:ffa5e6579b916a1e53b809e03231a387eeb5da8d9429249118ed89a34cea2c6f"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

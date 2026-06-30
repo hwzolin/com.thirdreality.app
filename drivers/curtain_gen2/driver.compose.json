@@ -22,7 +22,7 @@
     "productId": ["3RSB02015Z"],
     "endpoints": {
       "1": {
-        "clusters": [0, 1, 4, 5, 258, 65521],
+        "clusters": [0, 1, 4, 5, 25, 258, 65521],
         "bindings": [258, 65521]
       }
     },

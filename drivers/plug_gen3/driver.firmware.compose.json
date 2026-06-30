@@ -1,0 +1,107 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSPE02065Z"
+      },
+      "files": [
+        {
+          "fileVersion": 47,
+          "imageType": 54206,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 281722,
+          "name": "3RSPE02065Z_ZHA_047_20260512_075639.ota",
+          "integrity": "sha256:f40b44111e27adb0002eb7e179bb3223218c49410cc4c777cd65b44878a6299a"
+        }
+      ]
+    },
+    {
+      "changelog": {
+        "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSPU01080Z"
+      },
+      "files": [
+        {
+          "fileVersion": 47,
+          "imageType": 54196,
+          "manufacturerCode": 5127,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 281734,
+          "name": "3RSPU01080Z_ZHA_047_20260512_075916.ota",
+          "integrity": "sha256:288b487c5948a685eec64398692ba04484061a2ad33e498f062b7b3258f58329"
+        }
+      ]
+    },
+    {
+      "changelog": {
+        "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSP02064Z"
+      },
+      "files": [
+        {
+          "fileVersion": 47,
+          "imageType": 54196,
+          "manufacturerCode": 5127,
+          "minFileVersion": 0,
+          "maxFileVersion": 40,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 281750,
+          "name": "3RSP02064Z_ZHA_047_h0xD3B4_20260512_085143.ota",
+          "integrity": "sha256:66bacf240be864078546cc8bfc40b5664d56dd00a18d677bf33af073be2fbf44"
+        }
+      ]
+    },
+    {
+      "changelog": {
+        "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSP02064Z"
+      },
+      "files": [
+        {
+          "fileVersion": 47,
+          "imageType": 54205,
+          "manufacturerCode": 5127,
+          "minFileVersion": 41,
+          "maxFileVersion": 257,
+          "maxHardwareVersion": 65520,
+          "minHardwareVersion": 0,
+          "size": 281750,
+          "name": "3RSP02064Z_ZHA_047_h0xD3BD_20260512_085012.ota",
+          "integrity": "sha256:af3dab7763b1b7adf3ac632acfa161d1681c7a34cb39e3e1e89e3c5d9f93d13c"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

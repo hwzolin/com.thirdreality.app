@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Fix: Updated the firmware of button new SDK 3.7.1.4. The firmware version number read from the bootloader (01) is inconsistent with the application firmware version number (2E)."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSB22BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 47,
+          "imageType": 54184,
+          "manufacturerCode": 4659,
+          "size": 145986,
+          "name": "Button_PROD_OTA_V47_v1.00.47.ota",
+          "integrity": "sha256:c377d2f44e94fde4c87da4ff23daa36e814d75d8f487f11fd2021cfbfc55a48c"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

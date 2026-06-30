@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "compatibility": ">=12.5.0",
   "sdk": 3,
   "platforms": [
@@ -70,6 +70,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280,
               65281
             ],
@@ -127,6 +128,7 @@
               0,
               1,
               12,
+              25,
               1027
             ],
             "bindings": [
@@ -177,6 +179,7 @@
           "1": {
             "clusters": [
               0,
+              25,
               1026,
               1029,
               1037,
@@ -233,7 +236,8 @@
               1,
               6,
               8,
-              18
+              18,
+              25
             ]
           }
         },
@@ -243,7 +247,36 @@
           }
         }
       },
-      "id": "button"
+      "id": "button",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Fix: Updated the firmware of button new SDK 3.7.1.4. The firmware version number read from the bootloader (01) is inconsistent with the application firmware version number (2E)."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSB22BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 47,
+                "imageType": 54184,
+                "manufacturerCode": 4659,
+                "size": 145986,
+                "name": "Button_PROD_OTA_V47_v1.00.47.ota",
+                "integrity": "sha256:c377d2f44e94fde4c87da4ff23daa36e814d75d8f487f11fd2021cfbfc55a48c"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -288,7 +321,8 @@
               1,
               6,
               8,
-              18
+              18,
+              25
             ]
           },
           "2": {
@@ -316,7 +350,36 @@
           }
         }
       },
-      "id": "button_zb2"
+      "id": "button_zb2",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Increase the alarm sound log.\\nOptimize recall for ep2.\\nSend a recall with group ID 0 regardless of whether there is a group or not."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSB01085Z"
+            },
+            "files": [
+              {
+                "fileVersion": 9,
+                "imageType": 54224,
+                "manufacturerCode": 4659,
+                "size": 143522,
+                "name": "3RSB01085Z_ZHA_009_20260512_065536.ota",
+                "integrity": "sha256:9358be330477a0d499a256a49fdbab314680a9639e64920439ab659b8abeac63"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -359,6 +422,7 @@
               1,
               6,
               8,
+              25,
               768
             ]
           }
@@ -405,7 +469,62 @@
             }
           ]
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "The toggle command uses a timer to prevent the onoff function from being called when the level event is 0."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RCB01057Z"
+            },
+            "files": [
+              {
+                "fileVersion": 74,
+                "imageType": 54188,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 280854,
+                "name": "Zigbee_A19_Bulb_OTA_V74_1.00.74_3RCB01057Z.ota",
+                "integrity": "sha256:26012f7227f1ee40efbf30ed79a79eb61d09f8273b6fe6d78846204388d06f8a"
+              }
+            ]
+          },
+          {
+            "changelog": {
+              "en": "Fix: When the American standard and European standard bulbs are button-bound, pressing the button controls the bulb's toggle function. However, the reported status of the bulb is opposite to the actual status."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RCB02070Z"
+            },
+            "files": [
+              {
+                "fileVersion": 80,
+                "imageType": 54200,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 281598,
+                "name": "Zigbee_A60_Bulb_OTA_V80_1.00.80_3RCB02070Z.ota",
+                "integrity": "sha256:a389d2f06904fc8459f223108d8862a633bb298a859aba98e85abd040421aa22"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -446,6 +565,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280
             ],
             "bindings": [
@@ -460,7 +580,36 @@
           }
         }
       },
-      "id": "contact"
+      "id": "contact",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Modification of poll_rate setting.\\nOptimization of delay function delay time."
+            },
+            "device": {
+              "manufacturerName": [
+                "THIRDREALITY",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RDS17BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 63,
+                "imageType": 54178,
+                "manufacturerCode": 4659,
+                "size": 131682,
+                "name": "3RDS17BZ_ZHA_063_20260512_062544.ota",
+                "integrity": "sha256:18931a8bb5033f2c1ba9018603a7dcdd0b3d0ea206a5cf77be6ab451b4eec80c"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -506,6 +655,7 @@
               1,
               4,
               5,
+              25,
               258
             ],
             "bindings": [
@@ -519,7 +669,36 @@
           }
         }
       },
-      "id": "curtain"
+      "id": "curtain",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "After canceling the OTA during the curtain's operation and restarting the device, the issue of being unable to initiate another OTA was resolved.\\nDuring the curtain's movement, commands like reverse on/off are not accepted. Only a stop command can be given to solve the situation where two contradictory commands, \"on\" and \"100%\", are sent simultaneously by ECHOV4.\\nAfter setting the bind attribute to 1, change it to 0.\\nDuring the initialization startup, if it is 0%, set the value to \"on\"; if it is 100%, set the value to \"off\"."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSB015BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 84,
+                "imageType": 54183,
+                "manufacturerCode": 4659,
+                "size": 157106,
+                "name": "3RSB015BZ_ZHA_084_20260512_072044.ota",
+                "integrity": "sha256:5599d9289d3ff8d86a44c21acda9ebb882d7aa3f1b6c75fc91b316d100e1c26b"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -565,6 +744,7 @@
               1,
               4,
               5,
+              25,
               258,
               65521
             ],
@@ -908,7 +1088,36 @@
             }
           ]
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. Add a maximum lower limit distance restriction to the STM32. If the value read from the flash memory is less than 3800, set it to 3800. \\n2. The STM32 only accepts rotational speeds of 3800 and 4000; all other rotational speeds are invalid. \\n3. Modify the reporting function to prevent the latest version of zha from being unable to obtain the reported attribute values."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSB02015Z"
+            },
+            "files": [
+              {
+                "fileVersion": 55,
+                "imageType": 54186,
+                "manufacturerCode": 4659,
+                "size": 173522,
+                "name": "3RSB02015Z_ZHA_055_20260512_072744.ota",
+                "integrity": "sha256:647cb3573232f7d197979427e6c0d1b537e2a529f312841d691308c242743a37"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -955,6 +1164,7 @@
               4,
               5,
               6,
+              25,
               1794,
               2820,
               65283
@@ -1064,7 +1274,38 @@
             }
           ]
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "After the OTA is completed, add an onoff delay to restart the timing.\\nThe solution to the problem where there is a short-term abnormality in the calibration data due to the presence of power after EP1 is turned off within 2 seconds.\\nReports do not require responses. Report only when the power factor difference is 10 or more, reducing information exchange."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RDP01072Z"
+            },
+            "files": [
+              {
+                "fileVersion": 42,
+                "imageType": 54197,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 286614,
+                "name": "3RDP01072Z_ZHA_042_20260512_075416.ota",
+                "integrity": "sha256:9893bdba95b9b11559ac08411262e754f9f280925a754d9127e57dc13cbbc3ba"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -1107,6 +1348,7 @@
               1,
               4,
               5,
+              25,
               1280,
               65520
             ]
@@ -1118,7 +1360,36 @@
           }
         }
       },
-      "id": "garage_door_tilt"
+      "id": "garage_door_tilt",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Remove the code logic that causes the device to enter sleep mode when reading data, and restore it to the logic used in version v29 where the device does not enter sleep mode when reading data."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RDTS01056Z"
+            },
+            "files": [
+              {
+                "fileVersion": 36,
+                "imageType": 54193,
+                "manufacturerCode": 5127,
+                "size": 137698,
+                "name": "3RDTS01056Z_ZHA_036_20260512_063644.ota",
+                "integrity": "sha256:7e2f98c206d5992f250a25d664b6d8a6edc131184fe07cb62ab5772cf2a54a85"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -1338,6 +1609,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280,
               65281
             ],
@@ -1368,7 +1640,33 @@
             "en": "seconds"
           }
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. When sending the \"clear\" package, turn off the red light for one second. \\n2. The maximum value of the private delay function has been changed from 65535 to 3600. \\n3. The implementation method of health detection has been changed to the state machine approach. \\n4. The restart time for no_zigbee has been changed from 10 minutes to 30 minutes. The restart time for no_sleep has been changed from 0.5 hours to 1 hour. The restart time for unified health detection has been standardized."
+            },
+            "device": {
+              "manufacturerName": "Third Reality, Inc",
+              "productId": "3RMS16BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 79,
+                "imageType": 54177,
+                "manufacturerCode": 4659,
+                "size": 132610,
+                "name": "3RMS16BZ_ZHA_079_20260512_065253.ota",
+                "integrity": "sha256:37c210b25dc98722f1327030481eb4aa5238d07c8d907f76a0eef32cd6f70832"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -1410,6 +1708,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280,
               65281
             ],
@@ -1441,7 +1740,36 @@
             "en": "seconds"
           }
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. When removing the \"notify\" function, remove the code that sets the device to poll once every 250 milliseconds. \\n2. Log the \"ManufactureID\" information. \\n3. After connecting to the network, report the battery level twice every 15 seconds. At the same time, support the reporting of battery percentage attribute configuration to prevent incompatibility on the Z2M platform."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSMR01067Z"
+            },
+            "files": [
+              {
+                "fileVersion": 16,
+                "imageType": 54194,
+                "manufacturerCode": 5127,
+                "size": 139858,
+                "name": "3RSMR01067Z_ZHA_016_20260623_091208.ota",
+                "integrity": "sha256:ffa5e6579b916a1e53b809e03231a387eeb5da8d9429249118ed89a34cea2c6f"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -1482,6 +1810,7 @@
               1,
               6,
               8,
+              25,
               768,
               1024,
               1280,
@@ -1543,7 +1872,38 @@
             }
           ]
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Fix the error where re-powering after network connection can be bound."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSNL02043Z"
+            },
+            "files": [
+              {
+                "fileVersion": 86,
+                "imageType": 0,
+                "manufacturerCode": 4877,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 298162,
+                "name": "3RSNL02043Z_ZHA_086_20260512_064023.ota",
+                "integrity": "sha256:7a8ba8fa38ae94433af5fb38cde4b5dd72aeab4fbd65722cc6d59169fe19650c"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -1584,6 +1944,7 @@
               4,
               5,
               6,
+              25,
               1794,
               2820,
               65283
@@ -1644,7 +2005,36 @@
             "en": "seconds"
           }
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Change the specified string version number to 1.01.01, and the appversion remains 101."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSPE01044BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 268513381,
+                "imageType": 54182,
+                "manufacturerCode": 4659,
+                "size": 198146,
+                "name": "3RSP019BZ-28BZ-44BZ_ZHA_101_20260512_081147.ota",
+                "integrity": "sha256:50dc097b41d8675dd3753175401e5360e5166c1640c1bbd5d4e32a76804e0cb0"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -1690,6 +2080,7 @@
               4,
               5,
               6,
+              25,
               1794,
               2820,
               4096,
@@ -1762,7 +2153,114 @@
             "en": "seconds"
           }
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSPE02065Z"
+            },
+            "files": [
+              {
+                "fileVersion": 47,
+                "imageType": 54206,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 281722,
+                "name": "3RSPE02065Z_ZHA_047_20260512_075639.ota",
+                "integrity": "sha256:f40b44111e27adb0002eb7e179bb3223218c49410cc4c777cd65b44878a6299a"
+              }
+            ]
+          },
+          {
+            "changelog": {
+              "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSPU01080Z"
+            },
+            "files": [
+              {
+                "fileVersion": 47,
+                "imageType": 54196,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 281734,
+                "name": "3RSPU01080Z_ZHA_047_20260512_075916.ota",
+                "integrity": "sha256:288b487c5948a685eec64398692ba04484061a2ad33e498f062b7b3258f58329"
+              }
+            ]
+          },
+          {
+            "changelog": {
+              "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSP02064Z"
+            },
+            "files": [
+              {
+                "fileVersion": 47,
+                "imageType": 54196,
+                "manufacturerCode": 5127,
+                "minFileVersion": 0,
+                "maxFileVersion": 40,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 281750,
+                "name": "3RSP02064Z_ZHA_047_h0xD3B4_20260512_085143.ota",
+                "integrity": "sha256:66bacf240be864078546cc8bfc40b5664d56dd00a18d677bf33af073be2fbf44"
+              }
+            ]
+          },
+          {
+            "changelog": {
+              "en": "Resolve the issue of incorrect display of versions under the hue setting and the failure of off automation to execute."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSP02064Z"
+            },
+            "files": [
+              {
+                "fileVersion": 47,
+                "imageType": 54205,
+                "manufacturerCode": 5127,
+                "minFileVersion": 41,
+                "maxFileVersion": 257,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 281750,
+                "name": "3RSP02064Z_ZHA_047_h0xD3BD_20260512_085012.ota",
+                "integrity": "sha256:af3dab7763b1b7adf3ac632acfa161d1681c7a34cb39e3e1e89e3c5d9f93d13c"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -1799,6 +2297,7 @@
               3,
               4,
               6,
+              25,
               65283
             ]
           }
@@ -1857,7 +2356,36 @@
             "en": "seconds"
           }
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Change the specified string version number to 1.01.01, and the appversion remains 101."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSP019BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 268513381,
+                "imageType": 54182,
+                "manufacturerCode": 4659,
+                "size": 198146,
+                "name": "3RSP019BZ-28BZ-44BZ_ZHA_101_20260512_081147.ota",
+                "integrity": "sha256:50dc097b41d8675dd3753175401e5360e5166c1640c1bbd5d4e32a76804e0cb0"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -1898,6 +2426,7 @@
               4,
               5,
               6,
+              25,
               1794,
               2820,
               65283
@@ -1958,7 +2487,36 @@
             "en": "seconds"
           }
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Change the specified string version number to 1.01.01, and the appversion remains 101."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSP02028BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 268513381,
+                "imageType": 54182,
+                "manufacturerCode": 4659,
+                "size": 198146,
+                "name": "3RSP019BZ-28BZ-44BZ_ZHA_101_20260512_081147.ota",
+                "integrity": "sha256:50dc097b41d8675dd3753175401e5360e5166c1640c1bbd5d4e32a76804e0cb0"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -2002,6 +2560,7 @@
               1,
               6,
               8,
+              25,
               768,
               1024,
               1280,
@@ -2013,6 +2572,7 @@
               1,
               6,
               8,
+              25,
               768,
               1024,
               1280,
@@ -2105,6 +2665,7 @@
             "clusters": [
               0,
               1,
+              25,
               1026,
               1029,
               1032
@@ -2210,7 +2771,36 @@
             }
           ]
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Remove the code for determining the type of the gateway."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSM0147Z"
+            },
+            "files": [
+              {
+                "fileVersion": 51,
+                "imageType": 54191,
+                "manufacturerCode": 5127,
+                "size": 144258,
+                "name": "3RSM0147Z_ZHA_051_20260512_073409.ota",
+                "integrity": "sha256:43171f004ee31d1203ca32c0be0d569c92eb639c3b2e58bd351cd5096198e2d4"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -2251,6 +2841,7 @@
             "clusters": [
               0,
               1,
+              25,
               1026,
               1029,
               1032
@@ -2356,7 +2947,38 @@
             }
           ]
         }
-      ]
+      ],
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. Optimize the electrical differences in the soil.\\n2. Remove the echo mode."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSM0347Z"
+            },
+            "files": [
+              {
+                "fileVersion": 21,
+                "imageType": 54207,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 264830,
+                "name": "3RSM0347Z_ZHA_021_20260512_071259.ota",
+                "integrity": "sha256:546eb6ade7e0904a8b6e9bc424aa033410f376cf216c4c7d03eaefe74a710d7f"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -2414,7 +3036,8 @@
               1,
               3,
               4,
-              6
+              6,
+              25
             ]
           }
         },
@@ -2424,7 +3047,36 @@
           }
         }
       },
-      "id": "switch"
+      "id": "switch",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. Optimize the private cluster\\n2. Swap the private cluster and store the flash location\\n3. Change the full charge voltage to 3V\\n4. Control the private cluster on/off and report the status in time"
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSS009Z"
+            },
+            "files": [
+              {
+                "fileVersion": 36,
+                "imageType": 54181,
+                "manufacturerCode": 4659,
+                "size": 153570,
+                "name": "3RSS009Z_ZHA_036_20260512_073153.ota",
+                "integrity": "sha256:bee4e01cce8dd2a729bdfaa552e1fed0f3914571544d06280ef90603827e7368"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     },
     {
       "name": {
@@ -2466,6 +3118,7 @@
             "clusters": [
               0,
               1,
+              25,
               1026,
               1029
             ]
@@ -2521,6 +3174,7 @@
               0,
               1,
               19,
+              25,
               32,
               1026,
               1029
@@ -2529,6 +3183,7 @@
               0,
               1,
               19,
+              25,
               32,
               1026,
               1029
@@ -2670,6 +3325,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280,
               65521
             ],
@@ -2685,7 +3341,36 @@
           }
         }
       },
-      "id": "vibration"
+      "id": "vibration",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. Optimize the triggering conditions for the highest sensitivity level (triggered when the acceleration exceeds 128mg; less than 128mg requires three interruptions within one second to trigger). \\n2. After clearing the \"IAS Zone\" package, remove the package that reports xyz three-axis data."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RVS01031Z"
+            },
+            "files": [
+              {
+                "fileVersion": 55,
+                "imageType": 54187,
+                "manufacturerCode": 4659,
+                "size": 132610,
+                "name": "3RVS01031Z_ZHA_055_20260512_074249.ota",
+                "integrity": "sha256:e30f38054936f67cb0ca8fda252def31619284099ae930683ca2f030375daac0"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -2732,6 +3417,7 @@
               4,
               5,
               6,
+              25,
               1794,
               2820,
               65283
@@ -2741,6 +3427,7 @@
               4,
               5,
               6,
+              25,
               1794,
               2820,
               65283
@@ -2882,6 +3569,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280
             ],
             "bindings": [
@@ -2896,7 +3584,36 @@
           }
         }
       },
-      "id": "water_leak"
+      "id": "water_leak",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Optimize the button to prevent it from entering sleep mode."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RWS18BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 73,
+                "imageType": 54179,
+                "manufacturerCode": 4659,
+                "size": 145586,
+                "name": "3RWS18BZ_ZHA_073_20260512_074532.ota",
+                "integrity": "sha256:380a3a247c38f153bbafe7cf8dfe1c651f519b5521e61dedbf65bf876e32ff29"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -2937,6 +3654,7 @@
             "clusters": [
               0,
               1,
+              25,
               1280
             ],
             "bindings": [
@@ -2952,7 +3670,38 @@
           }
         }
       },
-      "id": "water_leak_gen2"
+      "id": "water_leak_gen2",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "Optimize power consumption. When an alarm is triggered, a red light will flash for a moment, then the alarm disappears. There is no need for the red light to remain on."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RWS0218Z"
+            },
+            "files": [
+              {
+                "fileVersion": 17,
+                "imageType": 54210,
+                "manufacturerCode": 5127,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 261534,
+                "name": "3RWS0218Z_ZHA_017_20260512_074840.ota",
+                "integrity": "sha256:44ed5a0ac0b5f20a63138e48c7f4ed498d8dd404b1b4230bb8e3e6e1a51e1530"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+        }
+      }
     },
     {
       "name": {
@@ -2999,6 +3748,7 @@
               3,
               4,
               6,
+              25,
               1280
             ]
           }
@@ -3009,7 +3759,36 @@
           }
         }
       },
-      "id": "watering_kit"
+      "id": "watering_kit",
+      "firmwareUpdates": {
+        "updates": [
+          {
+            "changelog": {
+              "en": "1. Since version 44 has been changed to perform the judgment each time it is awakened, the judgment and printing of battery usage every minute have been removed.\\n2. Added the bind function that can be used within 6 minutes of initial matching, and added three clusters: identify, groups, and scenes.\\n3. Added the toggle control function."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RWK0148Z"
+            },
+            "files": [
+              {
+                "fileVersion": 45,
+                "imageType": 54192,
+                "manufacturerCode": 5127,
+                "size": 151762,
+                "name": "3RWK0148Z_ZHA_045_20260512_071544.ota",
+                "integrity": "sha256:f8bd06c2ec9b37b67d0ffb972294276fe2f2f47c9d80b88c98c2826b3738de1c"
+              }
+            ]
+          }
+        ],
+        "wakeInstruction": {
+          "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+        }
+      }
     }
   ],
   "flow": {

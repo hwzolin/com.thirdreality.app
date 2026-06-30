@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. Add a maximum lower limit distance restriction to the STM32. If the value read from the flash memory is less than 3800, set it to 3800. \\n2. The STM32 only accepts rotational speeds of 3800 and 4000; all other rotational speeds are invalid. \\n3. Modify the reporting function to prevent the latest version of zha from being unable to obtain the reported attribute values."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSB02015Z"
+      },
+      "files": [
+        {
+          "fileVersion": 55,
+          "imageType": 54186,
+          "manufacturerCode": 4659,
+          "size": 173522,
+          "name": "3RSB02015Z_ZHA_055_20260512_072744.ota",
+          "integrity": "sha256:647cb3573232f7d197979427e6c0d1b537e2a529f312841d691308c242743a37"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

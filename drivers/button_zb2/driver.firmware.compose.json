@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Increase the alarm sound log.\\nOptimize recall for ep2.\\nSend a recall with group ID 0 regardless of whether there is a group or not."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSB01085Z"
+      },
+      "files": [
+        {
+          "fileVersion": 9,
+          "imageType": 54224,
+          "manufacturerCode": 4659,
+          "size": 143522,
+          "name": "3RSB01085Z_ZHA_009_20260512_065536.ota",
+          "integrity": "sha256:9358be330477a0d499a256a49fdbab314680a9639e64920439ab659b8abeac63"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "By controlling them in the Homey App, if it can be successfully controlled, it means the sleep mode has been activated."
+  }
+}

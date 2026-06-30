@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "1. Optimize the triggering conditions for the highest sensitivity level (triggered when the acceleration exceeds 128mg; less than 128mg requires three interruptions within one second to trigger). \\n2. After clearing the \"IAS Zone\" package, remove the package that reports xyz three-axis data."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RVS01031Z"
+      },
+      "files": [
+        {
+          "fileVersion": 55,
+          "imageType": 54187,
+          "manufacturerCode": 4659,
+          "size": 132610,
+          "name": "3RVS01031Z_ZHA_055_20260512_074249.ota",
+          "integrity": "sha256:e30f38054936f67cb0ca8fda252def31619284099ae930683ca2f030375daac0"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "updates": [
+    {
+      "changelog": {
+        "en": "Remove the code for determining the type of the gateway."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RSM0147Z"
+      },
+      "files": [
+        {
+          "fileVersion": 51,
+          "imageType": 54191,
+          "manufacturerCode": 5127,
+          "size": 144258,
+          "name": "3RSM0147Z_ZHA_051_20260512_073409.ota",
+          "integrity": "sha256:43171f004ee31d1203ca32c0be0d569c92eb639c3b2e58bd351cd5096198e2d4"
+        }
+      ]
+    }
+  ],
+  "wakeInstruction": {
+    "en": "Manual triggering devices. Once the status is synchronized on the Homey App, it indicates that the sleep mode has been exited."
+  }
+}
